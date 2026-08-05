@@ -32,70 +32,66 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
 
   return (
     <div className="space-y-12 py-6 md:py-8">
-      {/* 1. HERO AUTO-SLIDING REAL CAMPUS PHOTO CAROUSEL (DIRECTLY BELOW NAVBAR) */}
-      <section>
-        <HeroPhotoSlider />
-      </section>
-
-      {/* 2. ADMISSION ANNOUNCEMENT & STATS BANNER */}
-      <section className="relative rounded-3xl bg-gradient-to-br from-amber-400 via-amber-300 to-rose-300 p-6 md:p-10 overflow-hidden shadow-xl border-4 border-white">
-        {/* Animated Background Doodles */}
-        <div className="absolute top-6 left-10 w-24 h-24 bg-white/20 rounded-full blur-xl animate-float-slow" />
-        <div className="absolute bottom-10 right-12 w-32 h-32 bg-rose-400/20 rounded-full blur-2xl animate-float-delayed" />
-
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-8 space-y-4">
-            <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-black text-amber-900 shadow-sm border border-amber-200">
-              <Sparkles className="w-4 h-4 text-amber-500 animate-spin" />
-              <span>Admissions Open 2026-27 • Balwant Nagar, Gwalior</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
-              A Happy Place Where <span className="text-rose-600 underline decoration-amber-400">Children Feel at Home</span> While They Learn.
-            </h1>
-
-            <p className="text-sm sm:text-base text-slate-800 font-medium leading-relaxed max-w-2xl">
-              EuroKids Balwant Nagar, Thatipur, Gwalior provides a gentle, joyful transition into early learning with CCTV safety, nature play, and the Heureka thinking curriculum.
-            </p>
-
-            {/* Quick Stats Grid */}
-            <div className="pt-4 border-t border-slate-900/10 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {schoolInfo.stats.map((stat, idx) => (
-                <div key={idx} className="bg-white/85 backdrop-blur-xs p-3 rounded-2xl border border-white/60">
-                  <p className="text-xs font-extrabold text-slate-900 leading-tight">{stat.value}</p>
-                  <p className="text-[10px] text-slate-600 font-semibold mt-0.5">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+      {/* TOP HERO SECTION: 2-Column Side-by-Side Layout */}
+      {/* Left: Admissions Announcement & CTAs | Right: Uncropped Real Children Photo Slider */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Left Column: Admissions & School Introduction */}
+        <div className="lg:col-span-6 space-y-6">
+          <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-black shadow-xs border border-amber-300">
+            <Sparkles className="w-4 h-4 text-amber-600 animate-spin" />
+            <span>Admissions Open 2026-27 • Balwant Nagar, Gwalior</span>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col justify-center space-y-3 bg-white/90 p-6 rounded-3xl border-2 border-white shadow-lg">
-            <h3 className="text-lg font-black text-slate-900">Enquire for Admissions</h3>
-            <p className="text-xs text-slate-600">Admissions are open for Playgroup, Nursery, Junior KG & Senior KG.</p>
+          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+            A Happy Place Where <span className="text-rose-600 underline decoration-amber-400">Children Feel at Home</span> While They Learn.
+          </h1>
+
+          <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
+            EuroKids Balwant Nagar, Thatipur, Gwalior provides a gentle, joyful transition into early learning with CCTV safety, nature play, and the Heureka thinking curriculum.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-3 pt-2">
             <button
               onClick={openEnquiryDrawer}
-              className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs shadow-md transition-all flex items-center justify-center gap-2"
+              className="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-600 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white font-extrabold text-sm shadow-xl hover:shadow-2xl transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
             >
-              <span>Apply Online Now</span>
-              <ArrowRight className="w-4 h-4 text-amber-400" />
+              <Sparkles className="w-4 h-4" />
+              <span>Apply for Admissions</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
+
             <button
               onClick={openBookVisit}
-              className="w-full py-2.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-900 font-extrabold text-xs border border-amber-300 transition-all flex items-center justify-center gap-2"
+              className="px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-900 font-extrabold text-sm border-2 border-slate-300 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
             >
               <Calendar className="w-4 h-4 text-rose-500" />
               <span>Book Walkthrough</span>
             </button>
           </div>
+
+          {/* Quick Highlights Grid */}
+          <div className="pt-4 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {schoolInfo.stats.map((stat, idx) => (
+              <div key={idx} className="bg-white p-3 rounded-2xl border border-slate-200 shadow-xs">
+                <p className="text-xs font-extrabold text-slate-900 leading-tight">{stat.value}</p>
+                <p className="text-[10px] text-slate-600 font-semibold mt-0.5">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Column: Auto-sliding Real Campus Photo Carousel (Faces 100% Uncropped!) */}
+        <div className="lg:col-span-6">
+          <HeroPhotoSlider />
         </div>
       </section>
 
-      {/* 3. AGE FINDER QUIZ SECTION */}
+      {/* AGE FINDER QUIZ SECTION */}
       <section>
         <AgeFinderQuiz />
       </section>
 
-      {/* 4. PROGRAMS OVERVIEW CARDS */}
+      {/* PROGRAMS OVERVIEW CARDS */}
       <section className="space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="bg-rose-100 text-rose-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider border border-rose-200">
@@ -117,7 +113,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
               className="bg-white rounded-3xl p-6 border border-slate-200 shadow-lg flex flex-col justify-between group hover:border-amber-400 hover:shadow-xl transition-all"
             >
               <div>
-                <div className="relative rounded-2xl overflow-hidden mb-4 h-40">
+                <div className="relative rounded-2xl overflow-hidden mb-4 h-48 bg-slate-100">
                   <img
                     src={prog.image}
                     alt={prog.name}
@@ -164,7 +160,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
         </div>
       </section>
 
-      {/* 5. DAY ROUTINE PREVIEW */}
+      {/* DAY ROUTINE PREVIEW */}
       <section className="bg-slate-900 rounded-3xl p-6 md:p-10 text-white relative overflow-hidden">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-slate-800 pb-6">
           <div>
@@ -192,7 +188,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
         </div>
       </section>
 
-      {/* 6. TESTIMONIALS SPOTLIGHT */}
+      {/* TESTIMONIALS SPOTLIGHT */}
       <section className="space-y-6">
         <div className="text-center max-w-xl mx-auto space-y-2">
           <span className="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider border border-emerald-200">
