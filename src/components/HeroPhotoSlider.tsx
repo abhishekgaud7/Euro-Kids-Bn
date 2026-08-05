@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Sparkles, Camera } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Camera, Sparkles } from 'lucide-react';
 
 export interface PhotoSlide {
   id: string;
@@ -13,20 +13,20 @@ const PHOTO_SLIDES: PhotoSlide[] = [
   {
     id: 'slide-1',
     image: '/images/slider/slide1.jpg',
-    caption: 'Warm Namaste Greetings & Morning Prayer',
+    caption: 'Warm Namaste Greetings & Morning Discipline',
     tag: 'Balwant Nagar Campus'
   },
   {
     id: 'slide-2',
     image: '/images/slider/slide2.jpg',
     caption: 'Proud of My Apple Drawing Worksheet in Nursery Class',
-    tag: 'Sensory Art & Creative Zone'
+    tag: 'Sensory Art Zone'
   },
   {
     id: 'slide-3',
     image: '/images/slider/slide3.jpg',
     caption: 'Joyful Teacher Guidance & Educator Care',
-    tag: 'Learning Environment'
+    tag: 'Learning Care'
   },
   {
     id: 'slide-4',
@@ -46,13 +46,21 @@ export const HeroPhotoSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-slide effect every 4 seconds
+  // Preload next image for instant performance
+  useEffect(() => {
+    PHOTO_SLIDES.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.image;
+    });
+  }, []);
+
+  // Auto-slide effect every 3.5 seconds
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % PHOTO_SLIDES.length);
-    }, 4000);
+    }, 3500);
 
     return () => clearInterval(timer);
   }, [isPaused]);
@@ -69,87 +77,90 @@ export const HeroPhotoSlider: React.FC = () => {
 
   return (
     <div
-      className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-900 group"
+      className="relative rounded-3xl overflow-hidden shadow-lg border-2 border-white bg-slate-900 group max-w-5xl mx-auto"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Photo Showcase Container */}
-      <div className="relative h-[380px] sm:h-[460px] md:h-[500px] w-full flex items-center justify-center overflow-hidden bg-slate-950">
+      {/* Compact Normal Height Slider Showcase */}
+      <div className="relative h-[280px] sm:h-[350px] md:h-[380px] w-full flex items-center justify-center overflow-hidden bg-slate-950">
         {/* Ambient Blurred Background for Vertical Portrait Photos */}
         <AnimatePresence mode="wait">
           <motion.img
             key={`bg-${currentSlide.id}`}
             src={currentSlide.image}
             alt=""
+            loading="eager"
+            decoding="async"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.3 }}
+            animate={{ opacity: 0.25 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute inset-0 w-full h-full object-cover blur-2xl scale-125"
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 w-full h-full object-cover blur-xl scale-110"
           />
         </AnimatePresence>
 
-        {/* Full Uncropped Main Child Photo (object-contain ensures 100% of child face & body is visible) */}
+        {/* Uncropped Child Photo (object-contain guarantees 100% visible face & body) */}
         <AnimatePresence mode="wait">
           <motion.img
             key={`img-${currentSlide.id}`}
             src={currentSlide.image}
             alt={currentSlide.caption}
-            initial={{ opacity: 0, scale: 0.95 }}
+            loading="eager"
+            decoding="async"
+            initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="relative z-10 h-full w-auto max-w-full object-contain mx-auto shadow-2xl py-2"
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+            className="relative z-10 h-full w-auto max-w-full object-contain mx-auto shadow-xl py-1.5"
           />
         </AnimatePresence>
 
         {/* Minimal Subtle Tag Top Left */}
-        <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
-          <span className="bg-amber-400 text-slate-950 text-[11px] font-black px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 uppercase tracking-wider">
-            <Camera className="w-3.5 h-3.5" />
+        <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
+          <span className="bg-amber-400 text-slate-950 text-[10px] font-black px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1 uppercase tracking-wider">
+            <Camera className="w-3 h-3 text-slate-950" />
             <span>Balwant Nagar Campus</span>
           </span>
-          <span className="bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-full border border-white/20 hidden sm:inline-block">
+          <span className="bg-slate-900/80 text-white text-[10px] font-semibold px-2 py-1 rounded-full hidden sm:inline-block border border-white/20">
             {currentSlide.tag}
           </span>
         </div>
 
-        {/* Slide Counter Top Right */}
-        <div className="absolute top-4 right-4 z-20 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/20">
+        {/* Counter Top Right */}
+        <div className="absolute top-3 right-3 z-20 bg-slate-900/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/20">
           {currentIndex + 1} / {PHOTO_SLIDES.length}
         </div>
 
         {/* Navigation Arrows */}
         <button
           onClick={goToPrev}
-          className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md border border-white/30 transition-all opacity-80 hover:opacity-100 hover:scale-110"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 transition-all opacity-80 hover:opacity-100 hover:scale-105"
           aria-label="Previous Photo"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-4 h-4" />
         </button>
 
         <button
           onClick={goToNext}
-          className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md border border-white/30 transition-all opacity-80 hover:opacity-100 hover:scale-110"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 transition-all opacity-80 hover:opacity-100 hover:scale-105"
           aria-label="Next Photo"
         >
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-4 h-4" />
         </button>
 
-        {/* Clean Subtle Caption Bar at Bottom (Does NOT cover child's face) */}
-        <div className="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-8 pb-3 px-4 flex flex-col items-center text-center">
-          <p className="text-xs sm:text-sm font-bold text-white tracking-wide max-w-lg mb-2">
+        {/* Caption & Dot Indicators at Bottom */}
+        <div className="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-6 pb-2.5 px-3 flex flex-col items-center text-center">
+          <p className="text-xs font-bold text-white tracking-wide max-w-md mb-1.5 truncate">
             {currentSlide.caption}
           </p>
 
-          {/* Dot Progress Indicators */}
           <div className="flex items-center gap-1.5">
             {PHOTO_SLIDES.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  currentIndex === idx ? 'w-6 bg-amber-400' : 'w-2 bg-white/40 hover:bg-white/70'
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  currentIndex === idx ? 'w-5 bg-amber-400' : 'w-1.5 bg-white/40 hover:bg-white/70'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
