@@ -53,7 +53,7 @@ export const PROGRAMS_DATA: ProgramItem[] = [
       "Water and Paint Exploration",
       "Healthy Fruit and Snack Break"
     ],
-    image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=800",
+    image: "/images/slider/slide1.jpg",
     badge: "First Steps",
     annualFee: "Contact Center",
     termFee: "Flexible Payment Options"
@@ -78,7 +78,7 @@ export const PROGRAMS_DATA: ProgramItem[] = [
       "Blocks, Matching, and Puzzles",
       "Mud Play and Seed Planting"
     ],
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800",
+    image: "/images/slider/slide2.jpg",
     badge: "Active Curiosity",
     annualFee: "Contact Center",
     termFee: "Flexible Payment Options"
@@ -103,7 +103,7 @@ export const PROGRAMS_DATA: ProgramItem[] = [
       "Dance, Beats, and Rhythm Play",
       "Obstacle Course and Balancing Games"
     ],
-    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
+    image: "/images/slider/slide3.jpg",
     badge: "Creative Thinking",
     annualFee: "Contact Center",
     termFee: "Flexible Payment Options"
@@ -128,7 +128,7 @@ export const PROGRAMS_DATA: ProgramItem[] = [
       "Pottery, Clay, and Art Crafts",
       "Graduation Class Activities"
     ],
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800",
+    image: "/images/slider/slide4.jpg",
     badge: "Ready for Grade 1",
     annualFee: "Contact Center",
     termFee: "Flexible Payment Options"
@@ -193,7 +193,7 @@ export const FACILITIES: CampusFacility[] = [
     title: "Sunny Classrooms",
     subtitle: "Bright, airy spaces with child-friendly furniture.",
     description: "Classrooms feature large windows for natural light, low open shelves that children can easily reach, and child-safe rounded furniture.",
-    image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=800",
+    image: "/images/slider/slide1.jpg",
     features: ["Round-edged wooden tables", "Low shelving for independence", "Fresh air flow", "Comfortable soft carpets"],
     category: "classroom"
   },
@@ -202,7 +202,7 @@ export const FACILITIES: CampusFacility[] = [
     title: "Green Outdoor Play Area",
     subtitle: "Soft safety flooring and small nature patches.",
     description: "Equipped with rubberized flooring to prevent scrapes, climbing frames, a sandbox, and tricycle paths for active play.",
-    image: "https://images.unsplash.com/photo-1567057419565-4349c49d8a04?auto=format&fit=crop&q=80&w=800",
+    image: "/images/slider/slide5.jpg",
     features: ["Padded safety flooring", "Shaded climbing frames", "Herbs and flowers patch", "Mini cycling track"],
     category: "play"
   },
@@ -211,7 +211,7 @@ export const FACILITIES: CampusFacility[] = [
     title: "Cozy Story Book Library",
     subtitle: "A quiet space to discover stories.",
     description: "A comfortable space filled with picture books, soft pillows, audiobooks, and texture cards to encourage a love for reading.",
-    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800",
+    image: "/images/slider/slide2.jpg",
     features: ["Colorful picture books", "Soft reading pillows", "Touch-and-feel books", "Quiet story corner"],
     category: "learning"
   },
@@ -220,7 +220,7 @@ export const FACILITIES: CampusFacility[] = [
     title: "Secure Campus",
     subtitle: "Ensuring child safety at all times.",
     description: "Equipped with CCTV coverage, a secure check-in system, verified staff members, and clear safety rules.",
-    image: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=800",
+    image: "/images/slider/slide3.jpg",
     features: ["Fully fenced campus", "CCTV check-in security", "First-aid certified staff", "Safe pick-up gates"],
     category: "safety"
   },
@@ -229,7 +229,7 @@ export const FACILITIES: CampusFacility[] = [
     title: "Simple, Healthy Meals",
     subtitle: "Fresh snacks prepared daily in a clean kitchen.",
     description: "We serve simple, fresh snacks free from artificial colors or heavy spices, keeping food allergies and preferences in mind.",
-    image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&q=80&w=800",
+    image: "/images/slider/slide4.jpg",
     features: ["Clean, visible kitchen", "Allergy-safe preparation", "RO water filter stations", "Fresh fruits and warm milk"],
     category: "health"
   }
@@ -242,7 +242,7 @@ export const FACULTY_MEMBERS: FacultyMember[] = [
     qualification: "M.A. in Child Development",
     experience: "10+ Years",
     bio: "Harsha believes that school should feel like a second home. She is dedicated to creating a warm, supportive space where children feel safe to learn.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
+    image: "/images/slider/slide3.jpg",
     specialty: "Early Childhood Pedagogy & Care"
   }
 ];
@@ -254,7 +254,7 @@ export const TESTIMONIALS: Testimonial[] = [
     childNameAndGrade: "Parent of Aarav (Senior KG)",
     locality: "Thatipur, Gwalior",
     quote: "The school is beautifully run and feels incredibly warm and secure. The teachers are very patient, and my son Aarav is always excited to go. I highly recommend it.",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+    avatar: "/images/slider/slide2.jpg",
     rating: 5,
     date: "April 2026",
     isApproved: true
@@ -265,7 +265,7 @@ export const TESTIMONIALS: Testimonial[] = [
     childNameAndGrade: "Parent of Pihu (Nursery)",
     locality: "Gandhi Road, Gwalior",
     quote: "We love the focus on simple, healthy snacks and the cozy story library. Our daughter Pihu has become much more expressive and independent.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+    avatar: "/images/slider/slide1.jpg",
     rating: 5,
     date: "May 2026",
     isApproved: true
@@ -276,7 +276,7 @@ export const TESTIMONIALS: Testimonial[] = [
     childNameAndGrade: "Parent of Kabir (Playgroup)",
     locality: "Balwant Nagar, Gwalior",
     quote: "The school environment is exceptionally clean, safe, and welcoming. The teachers are incredibly patient, and they organize beautiful drawing workshops.",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+    avatar: "/images/slider/slide5.jpg",
     rating: 5,
     date: "June 2026",
     isApproved: true
@@ -290,7 +290,7 @@ export const LATEST_NEWS: NewsEvent[] = [
     category: "Admission",
     date: "July 2026",
     excerpt: "Admissions are open for Playgroup, Nursery, and KG programs. Feel free to schedule a walkthrough of our classrooms.",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600"
+    image: "/images/slider/slide1.jpg"
   },
   {
     id: "news-2",
@@ -298,7 +298,7 @@ export const LATEST_NEWS: NewsEvent[] = [
     category: "Activity",
     date: "July 2026",
     excerpt: "Children enjoyed a beautiful day painting, hand-printing, and constructing paper crafts in our creative art zone.",
-    image: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&q=80&w=600"
+    image: "/images/slider/slide2.jpg"
   },
   {
     id: "news-3",
@@ -306,7 +306,7 @@ export const LATEST_NEWS: NewsEvent[] = [
     category: "Community",
     date: "June 2026",
     excerpt: "A warm storytelling workshop bringing families and educators together to discuss reading aloud to children.",
-    image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=600"
+    image: "/images/slider/slide3.jpg"
   }
 ];
 
@@ -367,80 +367,38 @@ export const DOWNLOADS_LIST: DownloadItem[] = [
 export const GALLERY_ITEMS: GalleryImage[] = [
   {
     id: "g1",
-    title: "Classroom Learning",
+    title: "Morning Namaste & Prayer Values",
     category: "Campus",
-    image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=800",
-    caption: "A bright, airy classroom designed with comfortable seating and open shelves."
+    image: "/images/slider/slide1.jpg",
+    caption: "Toddlers learning respect, mindfulness, and warm greetings on soft mats."
   },
   {
     id: "g2",
-    title: "Interactive Story Circle",
+    title: "Proud of My Apple Drawing",
     category: "Classrooms",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800",
-    caption: "Children tracing letter sounds and word families on the interactive board."
+    image: "/images/slider/slide2.jpg",
+    caption: "A happy child showing off her completed drawing worksheet in Nursery class."
   },
   {
     id: "g3",
-    title: "Heureka Thinking Curriculum",
+    title: "Joyful Teacher Guidance",
     category: "Curriculum",
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800",
-    caption: "A view of the Heureka Visible Thinking program framework."
+    image: "/images/slider/slide3.jpg",
+    caption: "Director & teachers interacting closely with toddlers in a warm, welcoming space."
   },
   {
     id: "g4",
-    title: "Word Wheel Practice",
+    title: "Tactile Number Puzzles & Coloring",
     category: "Classrooms",
-    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-    caption: "Toddlers learning phonics patterns using hands-on sorting tools."
+    image: "/images/slider/slide4.jpg",
+    caption: "Toddlers learning number recognition and coloring patterns."
   },
   {
     id: "g5",
-    title: "Teacher Guidance",
-    category: "Classrooms",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
-    caption: "Nurturing interaction between teacher and child."
-  },
-  {
-    id: "g6",
-    title: "Writing & Puzzles",
+    title: "Constructing Towers & Spatial Play",
     category: "Activities",
-    image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=800",
-    caption: "Focusing on cognitive tasks and tracing numbers."
-  },
-  {
-    id: "g7",
-    title: "Coloring a Butterfly",
-    category: "Activities",
-    image: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&q=80&w=800",
-    caption: "Creative coloring and self-expression."
-  },
-  {
-    id: "g8",
-    title: "Playgroup Circle Time",
-    category: "Activities",
-    image: "https://images.unsplash.com/photo-1567057419565-4349c49d8a04?auto=format&fit=crop&q=80&w=800",
-    caption: "Children learning to play and share together."
-  },
-  {
-    id: "g9",
-    title: "Ball Rolling Game",
-    category: "Activities",
-    image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&q=80&w=800",
-    caption: "Fun physical activities for motor skills."
-  },
-  {
-    id: "g10",
-    title: "Proud of My Artwork",
-    category: "Classrooms",
-    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800",
-    caption: "Showing off completed drawing worksheets."
-  },
-  {
-    id: "g11",
-    title: "Puzzles and Shapes",
-    category: "Classrooms",
-    image: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=800",
-    caption: "Hands-on learning toys to develop coordination."
+    image: "/images/slider/slide5.jpg",
+    caption: "Building block towers to foster spatial thinking and fine motor skills."
   }
 ];
 
