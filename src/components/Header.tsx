@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -24,8 +24,7 @@ import {
   Users,
   Sun,
   CheckCircle2,
-  Download,
-  Lock
+  Download
 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { useData } from '../contexts/DataContext';
@@ -45,25 +44,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
   // Hover trigger states for Hover-to-Open dropdown menus
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Secret Owner Logo Click Counter (3 clicks within 2 seconds unlocks Admin Login for Owner)
-  const clickCountRef = useRef<number>(0);
-  const clickTimerRef = useRef<any>(null);
-
-  const handleLogoClick = () => {
-    clickCountRef.current += 1;
-    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
-
-    if (clickCountRef.current >= 3) {
-      clickCountRef.current = 0;
-      navigate('/eurokids-owner-gate');
-      return;
-    }
-
-    clickTimerRef.current = setTimeout(() => {
-      clickCountRef.current = 0;
-    }, 1500);
-  };
 
   // Program Items for Hover Dropdown
   const programDropdownItems = [
@@ -244,11 +224,12 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       {/* Main Navbar */}
       <div className="glass-panel bg-white/90 border-b border-amber-100/60 shadow-md px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo & School Name (With Secret Owner 3-Click Trigger) */}
-          <div
-            onClick={handleLogoClick}
-            className="flex items-center gap-3 group cursor-pointer select-none"
-            title="EuroKids Balwant Nagar"
+          {/* Standard Logo Link to Home */}
+          <Link
+            to="/"
+            onClick={() => handleNavClick('home')}
+            className="flex items-center gap-3 group select-none"
+            title="EuroKids Balwant Nagar Home"
           >
             <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-rose-400 p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
               <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center font-bold text-amber-600 text-xl">
@@ -268,7 +249,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 Preschool & Kindergarten • Gwalior
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1">
