@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { DOWNLOADS_LIST, ADMISSION_FAQS } from '../data/schoolData';
 import { useData } from '../contexts/DataContext';
+import { downloadProspectusPDF, downloadAdmissionFormPDF, downloadHealthFormPDF } from '../utils/pdfGenerator';
 import toast from 'react-hot-toast';
 
 export const AdmissionsPage: React.FC = () => {
@@ -48,8 +49,16 @@ export const AdmissionsPage: React.FC = () => {
     }
   ];
 
-  const handleDownload = (title: string) => {
-    toast.success(`Downloading ${title}...`);
+  const handleDownloadItem = (id: string, title: string) => {
+    if (id === 'd1' || title.toLowerCase().includes('prospectus')) {
+      downloadProspectusPDF();
+    } else if (id === 'd2' || title.toLowerCase().includes('application') || title.toLowerCase().includes('admission')) {
+      downloadAdmissionFormPDF();
+    } else if (id === 'd3' || title.toLowerCase().includes('health') || title.toLowerCase().includes('emergency')) {
+      downloadHealthFormPDF();
+    } else {
+      downloadProspectusPDF();
+    }
   };
 
   return (
@@ -125,12 +134,13 @@ export const AdmissionsPage: React.FC = () => {
               Resources & Forms
             </span>
             <h2 className="text-2xl font-black text-slate-900">Prospectus & Downloads</h2>
+            <p className="text-xs text-slate-600 mt-1">Click the download button on any document to save the official PDF to your device.</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {DOWNLOADS_LIST.map((item) => (
-            <div key={item.id} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-between gap-4">
+            <div key={item.id} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-between gap-4 hover:border-amber-400 transition-all">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold shrink-0">
                   <FileText className="w-5 h-5" />
@@ -142,9 +152,9 @@ export const AdmissionsPage: React.FC = () => {
               </div>
 
               <button
-                onClick={() => handleDownload(item.title)}
-                className="p-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white transition-all shrink-0"
-                title="Download file"
+                onClick={() => handleDownloadItem(item.id, item.title)}
+                className="p-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold transition-all shrink-0 flex items-center gap-1.5 shadow-xs hover:scale-105 active:scale-95"
+                title={`Download ${item.title} PDF`}
               >
                 <Download className="w-4 h-4" />
               </button>
