@@ -94,11 +94,14 @@ export interface Enquiry {
   childName: string;
   parentName: string;
   phone: string;
-  email: string;
+  email?: string;
   program: string;
   childAge?: string;
   dob?: string;
-  message: string;
+  locality?: string;
+  busNeeded?: boolean;
+  preferredContactTime?: string;
+  message?: string;
   date: string;
   status: 'New' | 'Contacted' | 'Visited' | 'Enrolled' | 'Closed';
 }
