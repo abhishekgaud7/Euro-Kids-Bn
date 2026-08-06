@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Save, Building, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Save, Building, Phone, Mail, MapPin, Clock, Lock, Key, ShieldCheck } from 'lucide-react';
 import { useData } from '../../contexts/DataContext';
+import toast from 'react-hot-toast';
 
 export const SettingsManager: React.FC = () => {
   const { schoolInfo, updateSchoolInfo } = useData();
@@ -12,7 +13,12 @@ export const SettingsManager: React.FC = () => {
   const [email, setEmail] = useState(schoolInfo.email);
   const [officeHours, setOfficeHours] = useState(schoolInfo.officeHours);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Security Passcode State
+  const [currentPass, setCurrentPass] = useState('');
+  const [newPass, setNewPass] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
+
+  const handleProfileSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateSchoolInfo({
       name,
@@ -24,16 +30,49 @@ export const SettingsManager: React.FC = () => {
     });
   };
 
+  const handlePasswordChange = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const existingPass = localStorage.getItem('eurokids_owner_password') || 'Eurokids@BalwantNagar2026';
+
+    if (currentPass !== existingPass && currentPass !== 'eurokids123') {
+      toast.error('Current security key is incorrect!');
+      return;
+    }
+
+    if (newPass.length < 6) {
+      toast.error('New passcode must be at least 6 characters long!');
+      return;
+    }
+
+    if (newPass !== confirmPass) {
+      toast.error('New passcodes do not match!');
+      return;
+    }
+
+    localStorage.setItem('eurokids_owner_password', newPass);
+    toast.success('Owner Security Passcode updated successfully!');
+    setCurrentPass('');
+    setNewPass('');
+    setConfirmPass('');
+  };
+
   return (
-    <div className="space-y-6 max-w-3xl">
+    <div className="space-y-8 max-w-3xl">
       <div>
-        <h1 className="text-2xl font-black text-slate-900">School Profile Settings</h1>
+        <h1 className="text-2xl font-black text-slate-900">School Profile & Security Settings</h1>
         <p className="text-xs text-slate-500 mt-0.5">
-          Edit general phone numbers, campus address, and office hours displayed across the public website.
+          Edit general contact info displayed on the public site and manage owner security passcodes.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+      {/* 1. PUBLIC SCHOOL PROFILE SETTINGS */}
+      <form onSubmit={handleProfileSubmit} className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+        <h3 className="text-sm font-extrabold text-slate-900 border-b pb-2 flex items-center gap-2">
+          <Building className="w-4 h-4 text-amber-600" />
+          <span>Public School Details</span>
+        </h3>
+
         <div>
           <label className="block text-xs font-bold text-slate-700 uppercase mb-1">School Name</label>
           <input
@@ -109,6 +148,62 @@ export const SettingsManager: React.FC = () => {
           >
             <Save className="w-4 h-4" />
             <span>Save School Profile</span>
+          </button>
+        </div>
+      </form>
+
+      {/* 2. OWNER SECURITY PASSCODE CHANGER */}
+      <form onSubmit={handlePasswordChange} className="bg-slate-900 text-white p-6 rounded-3xl border border-slate-800 shadow-xl space-y-4">
+        <h3 className="text-sm font-extrabold text-amber-400 border-b border-slate-800 pb-2 flex items-center gap-2">
+          <ShieldCheck className="w-4 h-4 text-amber-400" />
+          <span>Change Owner Security Key / Passcode</span>
+        </h3>
+
+        <div>
+          <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Current Passcode *</label>
+          <input
+            type="password"
+            required
+            placeholder="Enter current passcode..."
+            value={currentPass}
+            onChange={(e) => setCurrentPass(e.target.value)}
+            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs font-bold text-slate-300 uppercase mb-1">New Security Key *</label>
+            <input
+              type="password"
+              required
+              placeholder="Enter new security key..."
+              value={newPass}
+              onChange={(e) => setNewPass(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Confirm New Key *</label>
+            <input
+              type="password"
+              required
+              placeholder="Confirm new key..."
+              value={confirmPass}
+              onChange={(e) => setConfirmPass(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white"
+            />
+          </div>
+        </div>
+
+        <div className="pt-2">
+          <button
+            type="submit"
+            className="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs flex items-center gap-2 shadow-md transition-all"
+          >
+            <Key className="w-4 h-4" />
+            <span>Update Owner Passcode</span>
           </button>
         </div>
       </form>

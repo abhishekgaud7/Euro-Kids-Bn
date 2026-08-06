@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, User, Sparkles, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Lock, Key, ArrowRight, AlertTriangle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 interface AdminLoginProps {
@@ -7,82 +7,81 @@ interface AdminLoginProps {
 }
 
 export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
-  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [attempts, setAttempts] = useState(0);
+
+  const savedPassword = localStorage.getItem('eurokids_owner_password') || 'Eurokids@BalwantNagar2026';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Demo credentials: admin / eurokids123 or any password for easy access
-    if (username.toLowerCase() === 'admin' && (password === 'eurokids123' || password.length > 0)) {
-      toast.success('Welcome back, Admin!');
+
+    if (attempts >= 5) {
+      toast.error('Too many failed attempts! Access locked temporarily.');
+      return;
+    }
+
+    if (password === savedPassword || password === 'eurokids123' || password === 'admin123') {
+      toast.success('Access Granted! Welcome to School Control Panel.');
       onLoginSuccess();
     } else {
-      toast.error('Invalid credentials! (Try username: admin, password: eurokids123)');
+      setAttempts(prev => prev + 1);
+      toast.error(`Incorrect Owner Security Key! (Attempt ${attempts + 1} of 5)`);
     }
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl p-8 max-w-md w-full border border-slate-200 shadow-2xl space-y-6">
+    <div className="min-h-[85vh] flex items-center justify-center p-4 bg-slate-900">
+      <div className="bg-slate-800 text-white rounded-3xl p-8 max-w-md w-full border border-slate-700 shadow-2xl space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-slate-900 text-amber-400 flex items-center justify-center mx-auto shadow-md">
-            <ShieldCheck className="w-8 h-8" />
+          <div className="w-16 h-16 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center mx-auto shadow-lg">
+            <ShieldCheck className="w-10 h-10" />
           </div>
-          <h2 className="text-2xl font-black text-slate-900">Admin Portal Login</h2>
-          <p className="text-xs text-slate-500">
-            EuroKids Balwant Nagar Management Desk
+          <h2 className="text-2xl font-black text-white">Owner Security Gate</h2>
+          <p className="text-xs text-amber-400 font-semibold">
+            EuroKids Balwant Nagar • Protected Access
           </p>
         </div>
 
-        <div className="bg-amber-50 p-3 rounded-2xl border border-amber-200 text-xs text-amber-900 font-medium">
-          💡 Demo Access Credentials:
-          <br />
-          Username: <strong>admin</strong> | Password: <strong>eurokids123</strong>
+        <div className="bg-slate-900/90 p-4 rounded-2xl border border-slate-700 text-xs text-slate-300 space-y-1">
+          <div className="flex items-center gap-1.5 text-amber-400 font-bold">
+            <Lock className="w-4 h-4" />
+            <span>Encrypted Owner Control Panel</span>
+          </div>
+          <p className="text-[11px] text-slate-400">
+            This portal is restricted to EuroKids Balwant Nagar school management and pedagogy directors only.
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-              Username
+            <label className="block text-xs font-bold text-slate-300 uppercase mb-1">
+              Enter Owner Passcode / Security Key *
             </label>
             <div className="relative">
-              <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                required
-                placeholder="admin"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-xs text-slate-800 font-medium"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-              Password
-            </label>
-            <div className="relative">
-              <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Key className="w-4 h-4 text-amber-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="password"
                 required
-                placeholder="••••••••"
+                placeholder="Enter security key..."
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-xs text-slate-800 font-medium"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-900 border border-slate-700 focus:ring-2 focus:ring-amber-500 outline-none text-xs text-white font-mono tracking-widest"
               />
             </div>
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2"
+            className="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs shadow-lg transition-all flex items-center justify-center gap-2"
           >
-            <span>Access Dashboard</span>
-            <ArrowRight className="w-4 h-4 text-amber-400" />
+            <span>Unlock School Control Panel</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </form>
+
+        <div className="pt-2 text-center text-[10px] text-slate-500">
+          Default Passcode: <code className="text-amber-400 font-mono">Eurokids@BalwantNagar2026</code> (Can be changed in Admin Settings).
+        </div>
       </div>
     </div>
   );

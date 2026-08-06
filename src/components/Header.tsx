@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Phone,
@@ -24,7 +24,8 @@ import {
   Users,
   Sun,
   CheckCircle2,
-  Download
+  Download,
+  Lock
 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { useData } from '../contexts/DataContext';
@@ -39,12 +40,30 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
   const { theme, setTheme } = useTheme();
   const { schoolInfo, openBookVisit, openEnquiryDrawer } = useData();
   const location = useLocation();
+  const navigate = useNavigate();
 
-  // Hover trigger states for Hover-to-Open dropdown menus (onMouseEnter / onMouseLeave)
+  // Hover trigger states for Hover-to-Open dropdown menus
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const isAdmin = location.pathname.startsWith('/admin');
+  // Secret Owner Logo Click Counter (3 clicks within 2 seconds unlocks Admin Login for Owner)
+  const clickCountRef = useRef<number>(0);
+  const clickTimerRef = useRef<any>(null);
+
+  const handleLogoClick = () => {
+    clickCountRef.current += 1;
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+
+    if (clickCountRef.current >= 3) {
+      clickCountRef.current = 0;
+      navigate('/eurokids-owner-gate');
+      return;
+    }
+
+    clickTimerRef.current = setTimeout(() => {
+      clickCountRef.current = 0;
+    }, 1500);
+  };
 
   // Program Items for Hover Dropdown
   const programDropdownItems = [
@@ -86,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     }
   ];
 
-  // About Dropdown Items for Hover Dropdown
+  // About Dropdown Items
   const aboutDropdownItems = [
     {
       title: 'Heureka Curriculum',
@@ -108,7 +127,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     }
   ];
 
-  // Admissions Dropdown Items for Hover Dropdown
+  // Admissions Dropdown Items
   const admissionsDropdownItems = [
     {
       title: '4-Step Admission Guide',
@@ -130,7 +149,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     }
   ];
 
-  // Campus Dropdown Items for Hover Dropdown
+  // Campus Dropdown Items
   const campusDropdownItems = [
     {
       title: 'Sunny Classrooms & Play Area',
@@ -218,15 +237,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               <MapPin className="w-3 h-3 text-amber-400" />
               <span>Thatipur, Gwalior</span>
             </a>
-
-            {/* Admin Portal Toggle */}
-            <Link
-              to={isAdmin ? '/' : '/admin'}
-              className="flex items-center gap-1 text-[11px] font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded-full border border-slate-700 transition-all"
-            >
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span>{isAdmin ? 'Public Site' : 'Admin Portal'}</span>
-            </Link>
           </div>
         </div>
       </div>
@@ -234,11 +244,11 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       {/* Main Navbar */}
       <div className="glass-panel bg-white/90 border-b border-amber-100/60 shadow-md px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo & School Name */}
-          <Link
-            to="/"
-            onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 group"
+          {/* Logo & School Name (With Secret Owner 3-Click Trigger) */}
+          <div
+            onClick={handleLogoClick}
+            className="flex items-center gap-3 group cursor-pointer select-none"
+            title="EuroKids Balwant Nagar"
           >
             <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-rose-400 p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
               <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center font-bold text-amber-600 text-xl">
@@ -258,11 +268,10 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 Preschool & Kindergarten • Gwalior
               </p>
             </div>
-          </Link>
+          </div>
 
-          {/* Desktop Navigation Links with HOVER TRIGGER (MouseEnter / MouseLeave) */}
+          {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1">
-            {/* 1. HOME LINK */}
             <Link
               to="/"
               onClick={() => handleNavClick('home')}
@@ -275,7 +284,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               Home
             </Link>
 
-            {/* 2. ABOUT US (HOVER-TO-OPEN MENU) */}
+            {/* ABOUT US (HOVER MENU) */}
             <div
               className="relative"
               onMouseEnter={() => setHoveredMenu('about')}
@@ -342,7 +351,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               </AnimatePresence>
             </div>
 
-            {/* 3. PROGRAMS (HOVER-TO-OPEN MENU) */}
+            {/* PROGRAMS (HOVER MENU) */}
             <div
               className="relative"
               onMouseEnter={() => setHoveredMenu('programs')}
@@ -416,7 +425,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               </AnimatePresence>
             </div>
 
-            {/* 4. ADMISSIONS (HOVER-TO-OPEN MENU) */}
+            {/* ADMISSIONS (HOVER MENU) */}
             <div
               className="relative"
               onMouseEnter={() => setHoveredMenu('admissions')}
@@ -483,7 +492,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               </AnimatePresence>
             </div>
 
-            {/* 5. CAMPUS (HOVER-TO-OPEN MENU) */}
+            {/* CAMPUS (HOVER MENU) */}
             <div
               className="relative"
               onMouseEnter={() => setHoveredMenu('campus')}
@@ -550,7 +559,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               </AnimatePresence>
             </div>
 
-            {/* 6. GALLERY LINK */}
             <Link
               to="/gallery"
               onClick={() => handleNavClick('gallery')}
@@ -563,7 +571,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               Gallery
             </Link>
 
-            {/* 7. FEEDBACKS LINK */}
             <Link
               to="/feedbacks"
               onClick={() => handleNavClick('feedbacks')}
@@ -576,7 +583,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               Parent Reviews
             </Link>
 
-            {/* 8. CONTACT LINK */}
             <Link
               to="/contact"
               onClick={() => handleNavClick('contact')}
@@ -609,7 +615,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
@@ -649,7 +655,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 onClick={() => handleNavClick('programs')}
                 className="block px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:bg-amber-50"
               >
-                Programs (Playgroup, Nursery, KG)
+                Programs
               </Link>
               <Link
                 to="/admissions"

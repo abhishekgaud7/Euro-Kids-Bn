@@ -154,12 +154,12 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© {new Date().getFullYear()} EuroKids Balwant Nagar, Gwalior. All Rights Reserved.</p>
           <div className="flex items-center gap-4">
-            <Link to="/admin" className="hover:text-amber-400 transition-colors">
-              Admin Login
-            </Link>
-            <span>•</span>
             <button onClick={openEnquiryDrawer} className="hover:text-amber-400 transition-colors">
-              Admission Form
+              Admission Enquiry
+            </button>
+            <span>•</span>
+            <button onClick={openBookVisit} className="hover:text-amber-400 transition-colors">
+              Book Walkthrough
             </button>
           </div>
         </div>
