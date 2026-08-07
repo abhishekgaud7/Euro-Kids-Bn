@@ -14,7 +14,7 @@ export const SettingsManager: React.FC = () => {
   const [officeHours, setOfficeHours] = useState(schoolInfo.officeHours);
 
   // Web3Forms Access Key State
-  const [web3Key, setWeb3Key] = useState(() => localStorage.getItem('eurokids_web3forms_key') || '');
+  const [web3Key, setWeb3Key] = useState(() => localStorage.getItem('eurokids_web3forms_key') || '2fb5af16-e959-4beb-a6c4-a72ddd0c8314');
 
   // Security Passcode State
   const [currentPass, setCurrentPass] = useState('');

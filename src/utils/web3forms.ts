@@ -9,12 +9,9 @@ export interface Web3FormsPayload {
 }
 
 export const sendWeb3FormsNotification = async (payload: Web3FormsPayload): Promise<boolean> => {
-  const savedKey = localStorage.getItem('eurokids_web3forms_key');
-
-  // If owner hasn't set their key yet, we default gracefully
-  if (!savedKey) {
-    return false;
-  }
+  // Use user provided key as active default
+  const defaultKey = '2fb5af16-e959-4beb-a6c4-a72ddd0c8314';
+  const savedKey = localStorage.getItem('eurokids_web3forms_key') || defaultKey;
 
   try {
     const response = await fetch('https://api.web3forms.com/submit', {
