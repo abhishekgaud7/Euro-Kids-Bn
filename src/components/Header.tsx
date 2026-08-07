@@ -104,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     },
     {
       title: 'Director Spotlight',
-      desc: 'Mrs. Harsha Gupta (10+ Yrs Pedagogy Care).',
+      desc: 'Mrs. Sadhna Shrivastava (30+ Yrs Pedagogy Care).',
       icon: Users,
       color: 'bg-emerald-100 text-emerald-700'
     }

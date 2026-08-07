@@ -237,13 +237,13 @@ export const FACILITIES: CampusFacility[] = [
 
 export const FACULTY_MEMBERS: FacultyMember[] = [
   {
-    name: "Mrs. Harsha Gupta",
+    name: "Mrs. Sadhna Shrivastava",
     role: "Founder & Pedagogy Director",
-    qualification: "M.A. in Child Development",
-    experience: "10+ Years",
-    bio: "Harsha believes that school should feel like a second home. She is dedicated to creating a warm, supportive space where children feel safe to learn.",
+    qualification: "M.A. in Early Childhood Education & Development",
+    experience: "30+ Years",
+    bio: "Mrs. Sadhna Shrivastava believes that school should feel like a second home. With over 30+ years of rich experience in early childhood education, she is dedicated to creating a warm, supportive space where children feel safe, happy, and confident to learn.",
     image: "/images/slider/slide3.jpg",
-    specialty: "Early Childhood Pedagogy & Care"
+    specialty: "Early Childhood Pedagogy, Mentorship & Care"
   }
 ];
 

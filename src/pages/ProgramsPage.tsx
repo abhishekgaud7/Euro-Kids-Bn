@@ -128,7 +128,7 @@ export const ProgramsPage: React.FC = () => {
       <section className="bg-slate-900 rounded-3xl p-8 md:p-12 text-white text-center space-y-4">
         <h2 className="text-2xl sm:text-4xl font-black">Not sure which program matches your child's age?</h2>
         <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
-          Try our interactive Age Calculator on the homepage or schedule a personal consultation with director Harsha Gupta.
+          Try our interactive Age Calculator on the homepage or schedule a personal consultation with director Mrs. Sadhna Shrivastava.
         </p>
         <div className="pt-2 flex justify-center gap-4">
           <button

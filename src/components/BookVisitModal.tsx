@@ -121,7 +121,7 @@ export const BookVisitModal: React.FC = () => {
                 Schedule a School Visit
               </h3>
               <p className="text-xs text-slate-500 mb-6">
-                Come experience our bright classrooms, outdoor play areas, and meet director Harsha Gupta.
+                Come experience our bright classrooms, outdoor play areas, and meet director Mrs. Sadhna Shrivastava.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
