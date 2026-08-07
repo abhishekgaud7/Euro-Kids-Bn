@@ -6,11 +6,9 @@ import {
   Image as ImageIcon,
   Settings,
   LogOut,
-  ShieldCheck,
   Globe,
-  HelpCircle,
-  PhoneCall,
-  Sparkles
+  Sparkles,
+  ShieldCheck
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -28,104 +26,94 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   children
 }) => {
   const sidebarItems = [
-    {
-      id: 'dashboard',
-      label: '📊 Dashboard Overview',
-      subtitle: 'Quick Summary & Today Actions',
-      icon: LayoutDashboard
-    },
-    {
-      id: 'enquiries',
-      label: '📩 Admission Enquiries',
-      subtitle: 'Parent WhatsApp & Call List',
-      icon: Users
-    },
-    {
-      id: 'gallery',
-      label: '📸 School Photo Gallery',
-      subtitle: 'Upload & Delete Campus Photos',
-      icon: ImageIcon
-    },
-    {
-      id: 'feedbacks',
-      label: '⭐ Parent Reviews',
-      subtitle: 'Manage Parent Testimonials',
-      icon: MessageSquare
-    },
-    {
-      id: 'settings',
-      label: '⚙️ School Settings',
-      subtitle: 'Email Alert & Security Passcode',
-      icon: Settings
-    },
+    { id: 'dashboard', label: 'Dashboard Overview', icon: LayoutDashboard, badge: 'Main' },
+    { id: 'enquiries', label: 'Admission Enquiries', icon: Users, badge: 'Live' },
+    { id: 'gallery', label: 'Photo Gallery Manager', icon: ImageIcon },
+    { id: 'feedbacks', label: 'Parent Reviews', icon: MessageSquare },
+    { id: 'settings', label: 'School Settings', icon: Settings },
   ];
 
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col md:flex-row font-sans">
-      {/* Super Clear Owner Sidebar */}
-      <aside className="w-full md:w-72 bg-slate-900 text-white p-5 flex flex-col justify-between shrink-0 border-r border-slate-800 shadow-2xl">
+      {/* Sleek Dark Executive Sidebar */}
+      <aside className="w-full md:w-64 bg-slate-900 text-white p-5 flex flex-col justify-between shrink-0 border-r border-slate-800 shadow-2xl">
         <div className="space-y-6">
-          {/* Header Brand */}
-          <div className="bg-slate-800/90 p-3.5 rounded-2xl border border-slate-700/80 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white flex items-center justify-center font-black text-lg shadow-md shrink-0">
-              EK
+          {/* Executive Brand Logo Header */}
+          <div className="flex items-center gap-3 pb-4 border-b border-slate-800">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-600 via-blue-700 to-sky-500 p-0.5 shadow-lg shrink-0">
+              <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center font-black text-blue-900 text-lg">
+                EK
+              </div>
             </div>
             <div>
-              <h2 className="font-extrabold text-sm text-white leading-tight">EuroKids Control Desk</h2>
-              <p className="text-[11px] text-amber-400 font-bold">Balwant Nagar • Owner Panel</p>
+              <h2 className="font-extrabold text-sm text-white tracking-tight leading-none">
+                EuroKids Admin
+              </h2>
+              <p className="text-[10px] text-amber-400 font-bold mt-1">
+                Balwant Nagar Desk
+              </p>
             </div>
           </div>
 
-          {/* Simple Tab Navigation */}
-          <div className="space-y-1">
+          {/* Sidebar Menu */}
+          <nav className="space-y-1">
             <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider px-3 mb-2">
-              School Management Tabs
+              Management Menu
             </p>
             {sidebarItems.map((item) => {
+              const IconComp = item.icon;
               const isActive = activeTab === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-full text-left p-3 rounded-2xl transition-all duration-200 ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 ${
                     isActive
-                      ? 'bg-gradient-to-r from-blue-600 to-sky-600 text-white shadow-lg font-black scale-[1.02]'
-                      : 'text-slate-300 hover:bg-slate-800 hover:text-white font-bold'
+                      ? 'bg-gradient-to-r from-blue-600 to-sky-600 text-white shadow-lg scale-[1.02]'
+                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                   }`}
                 >
-                  <div className="text-xs font-black">{item.label}</div>
-                  <div className={`text-[10px] mt-0.5 ${isActive ? 'text-blue-100' : 'text-slate-400 font-medium'}`}>
-                    {item.subtitle}
+                  <div className="flex items-center gap-2.5">
+                    <IconComp className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                    <span>{item.label}</span>
                   </div>
+                  {item.badge && (
+                    <span className={`text-[9px] font-black px-1.5 py-0.5 rounded ${
+                      isActive ? 'bg-white text-blue-900' : 'bg-slate-800 text-slate-400'
+                    }`}>
+                      {item.badge}
+                    </span>
+                  )}
                 </button>
               );
             })}
-          </div>
+          </nav>
         </div>
 
-        {/* Footer Quick Links */}
+        {/* Footer Actions */}
         <div className="pt-6 border-t border-slate-800 space-y-2">
           <Link
             to="/"
             target="_blank"
-            className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold text-sky-300 bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-sky-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors"
           >
             <Globe className="w-4 h-4 text-sky-400" />
-            <span>Open Public Website ↗</span>
+            <span>View Public Site ↗</span>
           </Link>
 
           <button
             onClick={onLogout}
-            className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold text-rose-400 hover:bg-rose-500/20 transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-rose-400 hover:bg-rose-500/20 transition-colors"
           >
             <LogOut className="w-4 h-4" />
-            <span>Lock & Logout</span>
+            <span>Sign Out Desk</span>
           </button>
         </div>
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
+      <main className="flex-1 p-6 md:p-10 overflow-y-auto">
         {children}
       </main>
     </div>
