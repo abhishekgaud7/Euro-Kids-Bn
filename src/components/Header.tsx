@@ -239,7 +239,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       </div>
 
       {/* Main Navbar */}
-      <div className="glass-panel bg-white/90 border-b border-amber-100/60 shadow-md px-4 py-3">
+      <div className="glass-panel bg-white/95 border-b border-blue-100/80 shadow-md px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link
@@ -248,17 +248,17 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             className="flex items-center gap-3 group select-none"
             title="EuroKids Balwant Nagar Home"
           >
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-rose-400 p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center font-bold text-amber-600 text-xl">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-600 via-blue-700 to-sky-500 p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
+              <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center font-black text-blue-800 text-xl">
                 EK
               </div>
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-lg sm:text-xl text-slate-900 tracking-tight leading-none group-hover:text-amber-600 transition-colors">
+                <span className="font-extrabold text-lg sm:text-xl text-slate-900 tracking-tight leading-none group-hover:text-blue-700 transition-colors">
                   EuroKids
                 </span>
-                <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-1.5 py-0.5 rounded-md border border-amber-200">
+                <span className="bg-blue-100 text-blue-900 text-[10px] font-bold px-1.5 py-0.5 rounded-md border border-blue-200">
                   Balwant Nagar
                 </span>
               </div>
@@ -268,7 +268,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             </div>
           </Link>
 
-          {/* Clean Desktop Navigation Links (Uncluttered & Spacious) */}
+          {/* Clean Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-2">
             {/* PROGRAMS (HOVER MENU) */}
             <div
@@ -281,8 +281,8 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 onClick={() => handleNavClick('programs')}
                 className={`flex items-center gap-1 px-4 py-2.5 rounded-2xl text-sm font-extrabold transition-all duration-200 ${
                   activeTab === 'programs' || location.pathname === '/programs'
-                    ? 'bg-amber-100 text-amber-900 shadow-xs'
-                    : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
+                    ? 'bg-blue-100 text-blue-950 shadow-xs'
+                    : 'text-slate-700 hover:text-blue-700 hover:bg-blue-50/80'
                 }`}
               >
                 <span>Programs</span>

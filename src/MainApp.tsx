@@ -26,16 +26,16 @@ export const MainApp: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>(getActiveTabFromPath());
 
   return (
-    <div className="min-h-screen flex flex-col justify-between relative bg-amber-50/40 selection:bg-amber-200">
-      {/* Background Floating Cloud & Star Silhouettes */}
+    <div className="min-h-screen flex flex-col justify-between relative bg-slate-50 selection:bg-blue-200">
+      {/* Background EuroKids Blue Ambient Glow */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-30">
-        <div className="absolute top-20 left-10 w-36 h-36 bg-amber-200 rounded-full blur-3xl animate-float-slow" />
-        <div className="absolute top-96 right-16 w-48 h-48 bg-rose-200 rounded-full blur-3xl animate-float-delayed" />
-        <div className="absolute bottom-40 left-1/3 w-64 h-64 bg-sky-200 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute top-20 left-10 w-48 h-48 bg-blue-300 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute top-96 right-16 w-56 h-56 bg-sky-200 rounded-full blur-3xl animate-float-delayed" />
+        <div className="absolute bottom-40 left-1/3 w-64 h-64 bg-blue-100 rounded-full blur-3xl animate-pulse-slow" />
       </div>
 
       <div className="relative z-10 flex-1 flex flex-col">
-        {/* Responsive Navbar with Hover Triggers */}
+        {/* Responsive Navbar */}
         <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
         {/* Page Content */}

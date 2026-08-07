@@ -4,6 +4,14 @@
   :root {
     --font-heading: 'Manrope', sans-serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
+
+    /* Default EuroKids Brand Palette (Royal Blue & Crisp White) */
+    --primary: #0b43a1;
+    --primary-hover: #002d80;
+    --primary-light: #eff6ff;
+    --primary-bg: #f8fafc;
+    --accent: #f59e0b;
+    --ring: #0b43a1;
   }
 
   body {
@@ -16,6 +24,15 @@
 }
 
 /* Color Themes CSS Variable Definitions */
+[data-theme="blue"], :root {
+  --primary: #0b43a1;
+  --primary-hover: #002d80;
+  --primary-light: #eff6ff;
+  --primary-bg: #f8fafc;
+  --accent: #f59e0b;
+  --ring: #0b43a1;
+}
+
 [data-theme="yellow"] {
   --primary: #f59e0b;
   --primary-hover: #d97706;
@@ -23,15 +40,6 @@
   --primary-bg: #fffbeb;
   --accent: #ec4899;
   --ring: #f59e0b;
-}
-
-[data-theme="blue"] {
-  --primary: #0284c7;
-  --primary-hover: #0369a1;
-  --primary-light: #e0f2fe;
-  --primary-bg: #f0f9ff;
-  --accent: #f59e0b;
-  --ring: #0284c7;
 }
 
 [data-theme="green"] {
@@ -87,31 +95,15 @@
 
 /* Glassmorphism utils */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
 .glass-dropdown {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(243, 244, 246, 0.8);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #fef3c7;
-}
-::-webkit-scrollbar-thumb {
-  background: #f59e0b;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #d97706;
+  border: 1px solid rgba(226, 232, 240, 0.9);
 }

@@ -38,30 +38,30 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
       </section>
 
       {/* 2. ADMISSION ANNOUNCEMENT & STATS BANNER (DIRECTLY BELOW SLIDER) */}
-      <section className="relative rounded-3xl bg-gradient-to-br from-amber-400 via-amber-300 to-rose-300 p-6 md:p-10 overflow-hidden shadow-xl border-4 border-white">
+      <section className="relative rounded-3xl bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 p-6 md:p-10 overflow-hidden shadow-xl border-4 border-white text-white">
         {/* Animated Background Doodles */}
-        <div className="absolute top-6 left-10 w-24 h-24 bg-white/20 rounded-full blur-xl animate-float-slow" />
-        <div className="absolute bottom-10 right-12 w-32 h-32 bg-rose-400/20 rounded-full blur-2xl animate-float-delayed" />
+        <div className="absolute top-6 left-10 w-24 h-24 bg-white/10 rounded-full blur-xl animate-float-slow" />
+        <div className="absolute bottom-10 right-12 w-32 h-32 bg-sky-400/20 rounded-full blur-2xl animate-float-delayed" />
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div className="lg:col-span-8 space-y-4">
-            <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-xs px-4 py-1.5 rounded-full text-xs font-black text-amber-900 shadow-xs border border-amber-200">
-              <Sparkles className="w-4 h-4 text-amber-500 animate-spin" />
+            <div className="inline-flex items-center gap-2 bg-amber-400 text-slate-950 px-4 py-1.5 rounded-full text-xs font-black shadow-md">
+              <Sparkles className="w-4 h-4 text-slate-950 animate-spin" />
               <span>Admissions Open 2026-27 • Balwant Nagar, Gwalior</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
-              A Happy Place Where <span className="text-rose-600 underline decoration-amber-400">Children Feel at Home</span> While They Learn.
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
+              A Happy Place Where <span className="text-amber-400 underline decoration-sky-400">Children Feel at Home</span> While They Learn.
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-800 font-medium leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed max-w-2xl">
               EuroKids Balwant Nagar, Thatipur, Gwalior provides a gentle, joyful transition into early learning with CCTV safety, nature play, and the Heureka thinking curriculum.
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 onClick={openEnquiryDrawer}
-                className="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-600 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white font-extrabold text-sm shadow-xl hover:shadow-2xl transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+                className="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 font-black text-sm shadow-xl hover:shadow-2xl transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
               >
                 <Sparkles className="w-4 h-4" />
                 <span>Apply for Admissions</span>
@@ -70,27 +70,27 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
 
               <button
                 onClick={openBookVisit}
-                className="px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-900 font-extrabold text-sm border-2 border-slate-300 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+                className="px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-sm border-2 border-white shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
               >
-                <Calendar className="w-4 h-4 text-rose-500" />
+                <Calendar className="w-4 h-4 text-blue-700" />
                 <span>Book Walkthrough</span>
               </button>
             </div>
 
             {/* Quick Stats Grid */}
-            <div className="pt-4 border-t border-slate-900/10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-3">
               {schoolInfo.stats.map((stat, idx) => (
-                <div key={idx} className="bg-white/85 backdrop-blur-xs p-3 rounded-2xl border border-white/60">
-                  <p className="text-xs font-extrabold text-slate-900 leading-tight">{stat.value}</p>
-                  <p className="text-[10px] text-slate-600 font-semibold mt-0.5">{stat.label}</p>
+                <div key={idx} className="bg-white/10 backdrop-blur-xs p-3 rounded-2xl border border-white/20">
+                  <p className="text-xs font-extrabold text-amber-300 leading-tight">{stat.value}</p>
+                  <p className="text-[10px] text-slate-200 font-semibold mt-0.5">{stat.label}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Director & Safety Quick Card */}
-          <div className="lg:col-span-4 bg-white/95 p-6 rounded-3xl border-2 border-white shadow-lg space-y-3">
-            <span className="bg-amber-100 text-amber-900 text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider border border-amber-200">
+          <div className="lg:col-span-4 bg-white p-6 rounded-3xl border-2 border-white shadow-lg space-y-3 text-slate-900">
+            <span className="bg-blue-100 text-blue-900 text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider border border-blue-200">
               EuroKids Quality Care
             </span>
             <h3 className="text-base font-extrabold text-slate-900">Why Gwalior Parents Choose Us</h3>

@@ -12,7 +12,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<ThemeMode>(() => {
     const saved = localStorage.getItem('eurokids_theme') as ThemeMode;
-    return saved || 'yellow';
+    return saved || 'blue';
   });
 
   const setTheme = (newTheme: ThemeMode) => {
@@ -25,8 +25,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [theme]);
 
   const accentColorMap: Record<ThemeMode, string> = {
+    blue: 'blue',
     yellow: 'amber',
-    blue: 'sky',
     green: 'emerald',
     pink: 'pink'
   };
