@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle, ExternalLink, Sparkles, Building } from 'lucide-react';
 import { useData } from '../contexts/DataContext';
+import { sendWeb3FormsNotification } from '../utils/web3forms';
 
 export const ContactPage: React.FC = () => {
   const { schoolInfo, addEnquiry } = useData();
@@ -23,6 +24,15 @@ export const ContactPage: React.FC = () => {
       email,
       program,
       message
+    });
+
+    sendWeb3FormsNotification({
+      subject: `New Contact Form Query: ${parentName} (${program})`,
+      parent_name: parentName,
+      phone_number: phone,
+      email_address: email || 'Not provided',
+      program_interest: program,
+      message: message || 'No message provided'
     });
 
     setParentName('');

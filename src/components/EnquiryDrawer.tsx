@@ -17,6 +17,7 @@ import {
   MessageCircle
 } from 'lucide-react';
 import { useData } from '../contexts/DataContext';
+import { sendWeb3FormsNotification } from '../utils/web3forms';
 
 export const EnquiryDrawer: React.FC = () => {
   const { isEnquiryDrawerOpen, closeEnquiryDrawer, addEnquiry, schoolInfo } = useData();
@@ -66,6 +67,21 @@ export const EnquiryDrawer: React.FC = () => {
       busNeeded,
       preferredContactTime: preferredTime,
       message: message || undefined
+    });
+
+    // Send instant email notification via Web3Forms (if key set)
+    sendWeb3FormsNotification({
+      subject: `New Admission Enquiry: ${childName} (${program}) - EuroKids Balwant Nagar`,
+      child_name: childName,
+      child_age: childAgeGroup,
+      program_applied: program,
+      parent_name: parentName,
+      phone_number: phone,
+      email_address: email || 'Not provided',
+      locality: locality,
+      bus_needed: busNeeded ? 'Yes' : 'No',
+      preferred_call_time: preferredTime,
+      parent_message: message || 'None'
     });
 
     setIsSuccess(true);

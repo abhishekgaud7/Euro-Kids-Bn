@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Clock, User, Phone, Mail, Sparkles, CheckCircle2, Download, Building } from 'lucide-react';
 import { useData } from '../contexts/DataContext';
+import { sendWeb3FormsNotification } from '../utils/web3forms';
 import { jsPDF } from 'jspdf';
 import toast from 'react-hot-toast';
 
@@ -32,6 +33,16 @@ export const BookVisitModal: React.FC = () => {
       email: email || 'not-provided@example.com',
       program,
       message: `Booked Campus Visit for ${visitDate} at ${preferredTime}`,
+    });
+
+    sendWeb3FormsNotification({
+      subject: `New Campus Walkthrough Booking: ${parentName} on ${visitDate}`,
+      parent_name: parentName,
+      phone_number: phone,
+      email_address: email || 'Not provided',
+      visit_date: visitDate,
+      visit_time_slot: preferredTime,
+      program_interest: program
     });
 
     setIsSuccess(true);
