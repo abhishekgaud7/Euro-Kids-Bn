@@ -206,24 +206,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
           </div>
 
           <div className="flex items-center gap-3 ml-auto">
-            {/* Theme Selector Palette */}
-            <div className="flex items-center gap-1.5 bg-slate-800/80 px-2.5 py-1 rounded-full border border-slate-700">
-              <Palette className="w-3.5 h-3.5 text-amber-300" />
-              <span className="hidden lg:inline text-[11px] font-medium text-slate-300 mr-1">Theme:</span>
-              <div className="flex items-center gap-1">
-                {themeOptions.map((t) => (
-                  <button
-                    key={t.id}
-                    onClick={() => setTheme(t.id)}
-                    title={`Switch theme to ${t.label}`}
-                    className={`w-4 h-4 rounded-full ${t.bg} transition-all duration-200 ${
-                      theme === t.id ? 'ring-2 ring-white scale-110 shadow-sm' : 'opacity-70 hover:opacity-100 hover:scale-105'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
             {/* Location Badge */}
             <a
               href={schoolInfo.mapsUrl}
