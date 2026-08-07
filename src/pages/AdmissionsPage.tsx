@@ -126,43 +126,6 @@ export const AdmissionsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* DOWNLOADS SECTION */}
-      <section className="bg-amber-50 rounded-3xl p-6 md:p-10 border border-amber-200 shadow-lg">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-          <div>
-            <span className="bg-white text-amber-900 text-xs font-extrabold px-3 py-1 rounded-full border border-amber-200 uppercase tracking-wider mb-2 inline-block">
-              Resources & Forms
-            </span>
-            <h2 className="text-2xl font-black text-slate-900">Prospectus & Downloads</h2>
-            <p className="text-xs text-slate-600 mt-1">Click the download button on any document to save the official PDF to your device.</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {DOWNLOADS_LIST.map((item) => (
-            <div key={item.id} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-between gap-4 hover:border-amber-400 transition-all">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold shrink-0">
-                  <FileText className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-extrabold text-slate-900">{item.title}</h4>
-                  <p className="text-[11px] text-slate-500 font-medium">{item.category} • {item.fileSize}</p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => handleDownloadItem(item.id, item.title)}
-                className="p-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold transition-all shrink-0 flex items-center gap-1.5 shadow-xs hover:scale-105 active:scale-95"
-                title={`Download ${item.title} PDF`}
-              >
-                <Download className="w-4 h-4" />
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* FAQS ACCORDION */}
       <section className="space-y-6">
         <div className="text-center max-w-xl mx-auto space-y-2">
