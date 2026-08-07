@@ -24,7 +24,10 @@ import {
   Users,
   Sun,
   CheckCircle2,
-  Download
+  Download,
+  Image as ImageIcon,
+  MessageSquare,
+  PhoneCall
 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { useData } from '../contexts/DataContext';
@@ -107,28 +110,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     }
   ];
 
-  // Admissions Dropdown Items
-  const admissionsDropdownItems = [
-    {
-      title: '4-Step Admission Guide',
-      desc: 'Online enquiry, walkthrough, docs & seat confirmation.',
-      icon: FileText,
-      color: 'bg-sky-100 text-sky-700'
-    },
-    {
-      title: 'Prospectus Downloads',
-      desc: 'Download session 2026-27 brochure & medical form.',
-      icon: Download,
-      color: 'bg-amber-100 text-amber-700'
-    },
-    {
-      title: 'Frequently Asked Questions',
-      desc: 'Transparent fees, child security & meal policies.',
-      icon: CheckCircle2,
-      color: 'bg-purple-100 text-purple-700'
-    }
-  ];
-
   // Campus Dropdown Items
   const campusDropdownItems = [
     {
@@ -148,6 +129,42 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       desc: '100% fenced campus with safe pick-up gates.',
       icon: ShieldCheck,
       color: 'bg-rose-100 text-rose-700'
+    }
+  ];
+
+  // Explore Quick Dropdown Items (Keeps Gallery, Parent Reviews, Admissions, & Contact available cleanly without cluttering navbar)
+  const exploreDropdownItems = [
+    {
+      title: 'Photo Gallery',
+      desc: 'Real photos of events, classrooms & playground.',
+      path: '/gallery',
+      id: 'gallery',
+      icon: ImageIcon,
+      color: 'bg-amber-100 text-amber-700'
+    },
+    {
+      title: 'Parent Reviews & Ratings',
+      desc: 'Read testimonials from Gwalior parents.',
+      path: '/feedbacks',
+      id: 'feedbacks',
+      icon: MessageSquare,
+      color: 'bg-emerald-100 text-emerald-700'
+    },
+    {
+      title: 'Admissions & Downloads',
+      desc: '4-step process, fees & prospectus download.',
+      path: '/admissions',
+      id: 'admissions',
+      icon: FileText,
+      color: 'bg-sky-100 text-sky-700'
+    },
+    {
+      title: 'Contact Us & Location',
+      desc: 'Get in touch with front desk in Thatipur.',
+      path: '/contact',
+      id: 'contact',
+      icon: PhoneCall,
+      color: 'bg-purple-100 text-purple-700'
     }
   ];
 
@@ -224,7 +241,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       {/* Main Navbar */}
       <div className="glass-panel bg-white/90 border-b border-amber-100/60 shadow-md px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Standard Logo Link to Home */}
+          {/* Logo */}
           <Link
             to="/"
             onClick={() => handleNavClick('home')}
@@ -251,87 +268,8 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1">
-            <Link
-              to="/"
-              onClick={() => handleNavClick('home')}
-              className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                activeTab === 'home' || location.pathname === '/'
-                  ? 'bg-amber-100 text-amber-900 shadow-sm'
-                  : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
-              }`}
-            >
-              Home
-            </Link>
-
-            {/* ABOUT US (HOVER MENU) */}
-            <div
-              className="relative"
-              onMouseEnter={() => setHoveredMenu('about')}
-              onMouseLeave={() => setHoveredMenu(null)}
-            >
-              <Link
-                to="/about"
-                onClick={() => handleNavClick('about')}
-                className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                  activeTab === 'about' || location.pathname === '/about'
-                    ? 'bg-amber-100 text-amber-900 shadow-sm'
-                    : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
-                }`}
-              >
-                <span>About Us</span>
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-300 ${
-                    hoveredMenu === 'about' ? 'rotate-180 text-amber-600' : 'text-slate-400'
-                  }`}
-                />
-              </Link>
-
-              <AnimatePresence>
-                {hoveredMenu === 'about' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 6, scale: 0.96 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
-                    className="absolute top-full left-0 mt-1 w-72 glass-dropdown rounded-2xl p-3 shadow-2xl z-50 border border-amber-100"
-                  >
-                    <div className="px-3 py-1.5 mb-1.5 border-b border-slate-100 flex items-center justify-between">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                        About Our Preschool
-                      </span>
-                      <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                    </div>
-
-                    <div className="space-y-1">
-                      {aboutDropdownItems.map((item, idx) => {
-                        const IconComp = item.icon;
-                        return (
-                          <Link
-                            key={idx}
-                            to="/about"
-                            onClick={() => handleNavClick('about')}
-                            className="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-amber-50/80 transition-all"
-                          >
-                            <div className={`p-2 rounded-lg ${item.color} group-hover:scale-105 transition-transform`}>
-                              <IconComp className="w-4 h-4" />
-                            </div>
-                            <div>
-                              <h4 className="text-xs font-bold text-slate-900 group-hover:text-amber-600">
-                                {item.title}
-                              </h4>
-                              <p className="text-[10px] text-slate-500 line-clamp-1">{item.desc}</p>
-                            </div>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
+          {/* Clean Desktop Navigation Links (Uncluttered & Spacious) */}
+          <nav className="hidden lg:flex items-center gap-2">
             {/* PROGRAMS (HOVER MENU) */}
             <div
               className="relative"
@@ -341,9 +279,9 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               <Link
                 to="/programs"
                 onClick={() => handleNavClick('programs')}
-                className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                className={`flex items-center gap-1 px-4 py-2.5 rounded-2xl text-sm font-extrabold transition-all duration-200 ${
                   activeTab === 'programs' || location.pathname === '/programs'
-                    ? 'bg-amber-100 text-amber-900 shadow-sm'
+                    ? 'bg-amber-100 text-amber-900 shadow-xs'
                     : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
                 }`}
               >
@@ -406,53 +344,53 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               </AnimatePresence>
             </div>
 
-            {/* ADMISSIONS (HOVER MENU) */}
+            {/* ABOUT US (HOVER MENU) */}
             <div
               className="relative"
-              onMouseEnter={() => setHoveredMenu('admissions')}
+              onMouseEnter={() => setHoveredMenu('about')}
               onMouseLeave={() => setHoveredMenu(null)}
             >
               <Link
-                to="/admissions"
-                onClick={() => handleNavClick('admissions')}
-                className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                  activeTab === 'admissions' || location.pathname === '/admissions'
-                    ? 'bg-amber-100 text-amber-900 shadow-sm'
+                to="/about"
+                onClick={() => handleNavClick('about')}
+                className={`flex items-center gap-1 px-4 py-2.5 rounded-2xl text-sm font-extrabold transition-all duration-200 ${
+                  activeTab === 'about' || location.pathname === '/about'
+                    ? 'bg-amber-100 text-amber-900 shadow-xs'
                     : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
                 }`}
               >
-                <span>Admissions</span>
+                <span>About Us</span>
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-300 ${
-                    hoveredMenu === 'admissions' ? 'rotate-180 text-amber-600' : 'text-slate-400'
+                    hoveredMenu === 'about' ? 'rotate-180 text-amber-600' : 'text-slate-400'
                   }`}
                 />
               </Link>
 
               <AnimatePresence>
-                {hoveredMenu === 'admissions' && (
+                {hoveredMenu === 'about' && (
                   <motion.div
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.96 }}
                     transition={{ duration: 0.2, ease: 'easeOut' }}
-                    className="absolute top-full left-0 mt-1 w-80 glass-dropdown rounded-2xl p-3 shadow-2xl z-50 border border-amber-100"
+                    className="absolute top-full left-0 mt-1 w-72 glass-dropdown rounded-2xl p-3 shadow-2xl z-50 border border-amber-100"
                   >
                     <div className="px-3 py-1.5 mb-1.5 border-b border-slate-100 flex items-center justify-between">
                       <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                        Admissions & Process
+                        About Our Preschool
                       </span>
-                      <Sparkles className="w-3.5 h-3.5 text-sky-500" />
+                      <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                     </div>
 
                     <div className="space-y-1">
-                      {admissionsDropdownItems.map((item, idx) => {
+                      {aboutDropdownItems.map((item, idx) => {
                         const IconComp = item.icon;
                         return (
                           <Link
                             key={idx}
-                            to="/admissions"
-                            onClick={() => handleNavClick('admissions')}
+                            to="/about"
+                            onClick={() => handleNavClick('about')}
                             className="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-amber-50/80 transition-all"
                           >
                             <div className={`p-2 rounded-lg ${item.color} group-hover:scale-105 transition-transform`}>
@@ -482,9 +420,9 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               <Link
                 to="/campus"
                 onClick={() => handleNavClick('campus')}
-                className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                className={`flex items-center gap-1 px-4 py-2.5 rounded-2xl text-sm font-extrabold transition-all duration-200 ${
                   activeTab === 'campus' || location.pathname === '/campus'
-                    ? 'bg-amber-100 text-amber-900 shadow-sm'
+                    ? 'bg-amber-100 text-amber-900 shadow-xs'
                     : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
                 }`}
               >
@@ -503,7 +441,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.96 }}
                     transition={{ duration: 0.2, ease: 'easeOut' }}
-                    className="absolute top-full right-0 mt-1 w-80 glass-dropdown rounded-2xl p-3 shadow-2xl z-50 border border-amber-100"
+                    className="absolute top-full left-0 mt-1 w-80 glass-dropdown rounded-2xl p-3 shadow-2xl z-50 border border-amber-100"
                   >
                     <div className="px-3 py-1.5 mb-1.5 border-b border-slate-100 flex items-center justify-between">
                       <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
@@ -540,48 +478,73 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               </AnimatePresence>
             </div>
 
-            <Link
-              to="/gallery"
-              onClick={() => handleNavClick('gallery')}
-              className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                activeTab === 'gallery' || location.pathname === '/gallery'
-                  ? 'bg-amber-100 text-amber-900 shadow-sm'
-                  : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
-              }`}
+            {/* EXPLORE MORE (HOVER DROPDOWN FOR GALLERY, REVIEWS, ADMISSIONS, CONTACT) */}
+            <div
+              className="relative"
+              onMouseEnter={() => setHoveredMenu('explore')}
+              onMouseLeave={() => setHoveredMenu(null)}
             >
-              Gallery
-            </Link>
+              <button
+                className={`flex items-center gap-1.5 px-4 py-2.5 rounded-2xl text-sm font-extrabold transition-all duration-200 ${
+                  hoveredMenu === 'explore' || ['/gallery', '/feedbacks', '/admissions', '/contact'].includes(location.pathname)
+                    ? 'bg-amber-100 text-amber-900 shadow-xs'
+                    : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
+                }`}
+              >
+                <Compass className="w-4 h-4 text-amber-600" />
+                <span>Explore ▾</span>
+              </button>
 
-            <Link
-              to="/feedbacks"
-              onClick={() => handleNavClick('feedbacks')}
-              className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                activeTab === 'feedbacks' || location.pathname === '/feedbacks'
-                  ? 'bg-amber-100 text-amber-900 shadow-sm'
-                  : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
-              }`}
-            >
-              Parent Reviews
-            </Link>
+              <AnimatePresence>
+                {hoveredMenu === 'explore' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.96 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    className="absolute top-full right-0 mt-1 w-80 glass-dropdown rounded-2xl p-3 shadow-2xl z-50 border border-amber-100"
+                  >
+                    <div className="px-3 py-1.5 mb-1.5 border-b border-slate-100 flex items-center justify-between">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                        Explore Preschool Features
+                      </span>
+                      <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                    </div>
 
-            <Link
-              to="/contact"
-              onClick={() => handleNavClick('contact')}
-              className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                activeTab === 'contact' || location.pathname === '/contact'
-                  ? 'bg-amber-100 text-amber-900 shadow-sm'
-                  : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
-              }`}
-            >
-              Contact Us
-            </Link>
+                    <div className="space-y-1">
+                      {exploreDropdownItems.map((item) => {
+                        const IconComp = item.icon;
+                        return (
+                          <Link
+                            key={item.id}
+                            to={item.path}
+                            onClick={() => handleNavClick(item.id)}
+                            className="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-amber-50/80 transition-all"
+                          >
+                            <div className={`p-2 rounded-lg ${item.color} group-hover:scale-105 transition-transform`}>
+                              <IconComp className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <h4 className="text-xs font-bold text-slate-900 group-hover:text-amber-600">
+                                {item.title}
+                              </h4>
+                              <p className="text-[10px] text-slate-500 line-clamp-1">{item.desc}</p>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-2.5">
             <button
               onClick={openBookVisit}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-amber-900 bg-amber-100 hover:bg-amber-200 border border-amber-300 transition-all hover:scale-105 active:scale-95 shadow-xs"
+              className="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl text-xs font-extrabold text-amber-900 bg-amber-100 hover:bg-amber-200 border border-amber-300 transition-all hover:scale-105 active:scale-95 shadow-xs"
             >
               <Calendar className="w-4 h-4 text-amber-600" />
               <span>Book Visit</span>
@@ -589,7 +552,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
 
             <button
               onClick={openEnquiryDrawer}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-amber-500 via-amber-600 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95"
+              className="flex items-center gap-1.5 px-5 py-2.5 rounded-2xl text-xs font-black text-white bg-gradient-to-r from-amber-500 via-amber-600 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95"
             >
               <Sparkles className="w-4 h-4" />
               <span>Admissions Open</span>
@@ -625,13 +588,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 Home
               </Link>
               <Link
-                to="/about"
-                onClick={() => handleNavClick('about')}
-                className="block px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:bg-amber-50"
-              >
-                About Us
-              </Link>
-              <Link
                 to="/programs"
                 onClick={() => handleNavClick('programs')}
                 className="block px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:bg-amber-50"
@@ -639,11 +595,11 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 Programs
               </Link>
               <Link
-                to="/admissions"
-                onClick={() => handleNavClick('admissions')}
+                to="/about"
+                onClick={() => handleNavClick('about')}
                 className="block px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:bg-amber-50"
               >
-                Admissions & Downloads
+                About Us
               </Link>
               <Link
                 to="/campus"
@@ -651,6 +607,13 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 className="block px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:bg-amber-50"
               >
                 Campus & Bus Routes
+              </Link>
+              <Link
+                to="/admissions"
+                onClick={() => handleNavClick('admissions')}
+                className="block px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:bg-amber-50"
+              >
+                Admissions & Downloads
               </Link>
               <Link
                 to="/gallery"
