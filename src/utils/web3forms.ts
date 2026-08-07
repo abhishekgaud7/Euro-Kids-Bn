@@ -9,9 +9,10 @@ export interface Web3FormsPayload {
 }
 
 export const sendWeb3FormsNotification = async (payload: Web3FormsPayload): Promise<boolean> => {
-  // Use user provided key as active default
+  // Check Vercel / Vite Environment Variable first, then localStorage, then default key
+  const envKey = import.meta.env.VITE_WEB3FORMS_KEY;
   const defaultKey = '2fb5af16-e959-4beb-a6c4-a72ddd0c8314';
-  const savedKey = localStorage.getItem('eurokids_web3forms_key') || defaultKey;
+  const savedKey = envKey || localStorage.getItem('eurokids_web3forms_key') || defaultKey;
 
   try {
     const response = await fetch('https://api.web3forms.com/submit', {
