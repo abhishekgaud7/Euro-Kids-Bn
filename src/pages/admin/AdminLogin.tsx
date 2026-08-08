@@ -78,10 +78,6 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
-
-        <div className="pt-2 text-center text-[10px] text-slate-500">
-          Default Passcode: <code className="text-amber-400 font-mono">Eurokids@BalwantNagar2026</code> (Can be changed in Admin Settings).
-        </div>
       </div>
     </div>
   );
