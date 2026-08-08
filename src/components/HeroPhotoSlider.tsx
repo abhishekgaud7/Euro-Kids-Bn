@@ -13,7 +13,7 @@ const PHOTO_SLIDES: PhotoSlide[] = [
   {
     id: 'slide-1',
     image: '/images/slider/slide1.jpg',
-    caption: 'Warm Namaste Greetings & Morning Discipline',
+    caption: 'Warm Namaste Greetings & Morning Discipline in Classroom',
     tag: 'Balwant Nagar Campus'
   },
   {
@@ -25,7 +25,7 @@ const PHOTO_SLIDES: PhotoSlide[] = [
   {
     id: 'slide-3',
     image: '/images/slider/slide3.jpg',
-    caption: 'Joyful Teacher Guidance & Educator Care',
+    caption: 'Joyful Teacher Guidance & Dedicated Educator Care',
     tag: 'Learning Care'
   },
   {
@@ -46,7 +46,7 @@ export const HeroPhotoSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Preload next image for instant performance
+  // Preload images for instant rendering
   useEffect(() => {
     PHOTO_SLIDES.forEach((slide) => {
       const img = new Image();
@@ -54,13 +54,13 @@ export const HeroPhotoSlider: React.FC = () => {
     });
   }, []);
 
-  // Auto-slide effect every 3.5 seconds
+  // Auto-slide effect every 4 seconds
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % PHOTO_SLIDES.length);
-    }, 3500);
+    }, 4000);
 
     return () => clearInterval(timer);
   }, [isPaused]);
@@ -77,90 +77,74 @@ export const HeroPhotoSlider: React.FC = () => {
 
   return (
     <div
-      className="relative rounded-3xl overflow-hidden shadow-lg border-2 border-white bg-slate-900 group max-w-5xl mx-auto"
+      className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-950 group max-w-7xl mx-auto my-4"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Compact Normal Height Slider Showcase */}
-      <div className="relative h-[280px] sm:h-[350px] md:h-[380px] w-full flex items-center justify-center overflow-hidden bg-slate-950">
-        {/* Ambient Blurred Background for Vertical Portrait Photos */}
+      {/* Grand High-Resolution Full Showcase Slider */}
+      <div className="relative h-[380px] sm:h-[480px] md:h-[560px] lg:h-[620px] w-full overflow-hidden">
+        {/* Full Image Slide with Subtle Scale Animation */}
         <AnimatePresence mode="wait">
           <motion.img
-            key={`bg-${currentSlide.id}`}
-            src={currentSlide.image}
-            alt=""
-            loading="eager"
-            decoding="async"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.25 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-0 w-full h-full object-cover blur-xl scale-110"
-          />
-        </AnimatePresence>
-
-        {/* Uncropped Child Photo (object-contain guarantees 100% visible face & body) */}
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={`img-${currentSlide.id}`}
+            key={`slide-${currentSlide.id}`}
             src={currentSlide.image}
             alt={currentSlide.caption}
             loading="eager"
             decoding="async"
-            initial={{ opacity: 0, scale: 0.97 }}
+            initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-            className="relative z-10 h-full w-auto max-w-full object-contain mx-auto shadow-xl py-1.5"
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="w-full h-full object-cover object-center"
           />
         </AnimatePresence>
 
-        {/* Minimal Subtle Tag Top Left */}
-        <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
-          <span className="bg-amber-400 text-slate-950 text-[10px] font-black px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1 uppercase tracking-wider">
-            <Camera className="w-3 h-3 text-slate-950" />
-            <span>Balwant Nagar Campus</span>
+        {/* Top Badges overlay */}
+        <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
+          <span className="bg-amber-400 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 uppercase tracking-wider">
+            <Camera className="w-4 h-4 text-slate-950" />
+            <span>EuroKids Balwant Nagar</span>
           </span>
-          <span className="bg-slate-900/80 text-white text-[10px] font-semibold px-2 py-1 rounded-full hidden sm:inline-block border border-white/20">
+          <span className="bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full hidden sm:inline-block border border-white/20">
             {currentSlide.tag}
           </span>
         </div>
 
         {/* Counter Top Right */}
-        <div className="absolute top-3 right-3 z-20 bg-slate-900/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/20">
+        <div className="absolute top-4 right-4 z-20 bg-slate-900/80 backdrop-blur-md text-white text-xs font-black px-3 py-1.5 rounded-full border border-white/20 shadow-md">
           {currentIndex + 1} / {PHOTO_SLIDES.length}
         </div>
 
-        {/* Navigation Arrows */}
+        {/* Big Touch-Friendly Navigation Arrows */}
         <button
           onClick={goToPrev}
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 transition-all opacity-80 hover:opacity-100 hover:scale-105"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-2xl bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 shadow-xl transition-all opacity-80 hover:opacity-100 hover:scale-110"
           aria-label="Previous Photo"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="w-6 h-6" />
         </button>
 
         <button
           onClick={goToNext}
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 transition-all opacity-80 hover:opacity-100 hover:scale-105"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-2xl bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 shadow-xl transition-all opacity-80 hover:opacity-100 hover:scale-110"
           aria-label="Next Photo"
         >
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-6 h-6" />
         </button>
 
-        {/* Caption & Dot Indicators at Bottom */}
-        <div className="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-6 pb-2.5 px-3 flex flex-col items-center text-center">
-          <p className="text-xs font-bold text-white tracking-wide max-w-md mb-1.5 truncate">
+        {/* Rich Bottom Caption & Dot Indicators */}
+        <div className="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-12 pb-5 px-6 flex flex-col items-center text-center">
+          <p className="text-sm sm:text-base md:text-lg font-black text-white tracking-wide max-w-2xl mb-3 drop-shadow-md">
             {currentSlide.caption}
           </p>
 
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-2">
             {PHOTO_SLIDES.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  currentIndex === idx ? 'w-5 bg-amber-400' : 'w-1.5 bg-white/40 hover:bg-white/70'
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === idx ? 'w-8 bg-amber-400' : 'w-2 bg-white/40 hover:bg-white/70'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
