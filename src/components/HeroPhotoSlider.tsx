@@ -13,7 +13,7 @@ const PHOTO_SLIDES: PhotoSlide[] = [
   {
     id: 'slide-1',
     image: '/images/slider/slide1.jpg',
-    caption: 'Warm Namaste Greetings & Morning Discipline in Classroom',
+    caption: 'Warm Namaste Greetings & Morning Values',
     tag: 'Balwant Nagar Campus'
   },
   {
@@ -46,7 +46,7 @@ export const HeroPhotoSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Preload images for instant rendering
+  // Preload images for instant performance
   useEffect(() => {
     PHOTO_SLIDES.forEach((slide) => {
       const img = new Image();
@@ -81,25 +81,41 @@ export const HeroPhotoSlider: React.FC = () => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Grand High-Resolution Full Showcase Slider */}
-      <div className="relative h-[380px] sm:h-[480px] md:h-[560px] lg:h-[620px] w-full overflow-hidden">
-        {/* Full Image Slide with Subtle Scale Animation */}
+      {/* Grand Showcase Slider - Perfectly Aligned Uncropped Framing */}
+      <div className="relative h-[360px] sm:h-[460px] md:h-[520px] lg:h-[580px] w-full flex items-center justify-center overflow-hidden bg-slate-950">
+        {/* Soft Ambient Blurred Background for Seamless Color Filling */}
         <AnimatePresence mode="wait">
           <motion.img
-            key={`slide-${currentSlide.id}`}
+            key={`bg-${currentSlide.id}`}
+            src={currentSlide.image}
+            alt=""
+            loading="eager"
+            decoding="async"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.35 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 pointer-events-none"
+          />
+        </AnimatePresence>
+
+        {/* 100% Full Uncropped Perfectly Centered Child Photo */}
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={`img-${currentSlide.id}`}
             src={currentSlide.image}
             alt={currentSlide.caption}
             loading="eager"
             decoding="async"
-            initial={{ opacity: 0, scale: 1.05 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="w-full h-full object-cover object-center"
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="relative z-10 h-full w-auto max-w-full object-contain mx-auto drop-shadow-2xl py-2"
           />
         </AnimatePresence>
 
-        {/* Top Badges overlay */}
+        {/* Top Badges Overlay */}
         <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
           <span className="bg-amber-400 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 uppercase tracking-wider">
             <Camera className="w-4 h-4 text-slate-950" />
@@ -115,7 +131,7 @@ export const HeroPhotoSlider: React.FC = () => {
           {currentIndex + 1} / {PHOTO_SLIDES.length}
         </div>
 
-        {/* Big Touch-Friendly Navigation Arrows */}
+        {/* Navigation Arrows */}
         <button
           onClick={goToPrev}
           className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-2xl bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 shadow-xl transition-all opacity-80 hover:opacity-100 hover:scale-110"
@@ -132,7 +148,7 @@ export const HeroPhotoSlider: React.FC = () => {
           <ChevronRight className="w-6 h-6" />
         </button>
 
-        {/* Rich Bottom Caption & Dot Indicators */}
+        {/* Bottom Caption Overlay */}
         <div className="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-12 pb-5 px-6 flex flex-col items-center text-center">
           <p className="text-sm sm:text-base md:text-lg font-black text-white tracking-wide max-w-2xl mb-3 drop-shadow-md">
             {currentSlide.caption}
