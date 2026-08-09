@@ -77,12 +77,12 @@ export const HeroPhotoSlider: React.FC = () => {
 
   return (
     <div
-      className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-950 group max-w-7xl mx-auto my-4"
+      className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-white bg-slate-950 group max-w-6xl mx-auto my-2"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Grand High-Resolution Full Showcase Slider */}
-      <div className="relative h-[380px] sm:h-[480px] md:h-[560px] lg:h-[620px] w-full overflow-hidden">
+      {/* Compact Sleek Showcase Slider */}
+      <div className="relative h-[250px] sm:h-[320px] md:h-[360px] lg:h-[380px] w-full overflow-hidden">
         {/* Full Image Slide with Subtle Scale Animation */}
         <AnimatePresence mode="wait">
           <motion.img
