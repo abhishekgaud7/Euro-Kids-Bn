@@ -5,12 +5,18 @@
     --font-heading: 'Manrope', sans-serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
 
-    /* Default EuroKids Brand Palette (Royal Blue & Crisp White) */
+    /* Exact Official EuroKids International Brand Palette */
+    --eurokids-navy: #002d80;
+    --eurokids-royal: #0b43a1;
+    --eurokids-yellow: #ffc72c;
+    --eurokids-sky: #00a3e0;
+    --eurokids-red: #e40046;
+
     --primary: #0b43a1;
     --primary-hover: #002d80;
     --primary-light: #eff6ff;
     --primary-bg: #f8fafc;
-    --accent: #f59e0b;
+    --accent: #ffc72c;
     --ring: #0b43a1;
   }
 
@@ -29,17 +35,17 @@
   --primary-hover: #002d80;
   --primary-light: #eff6ff;
   --primary-bg: #f8fafc;
-  --accent: #f59e0b;
+  --accent: #ffc72c;
   --ring: #0b43a1;
 }
 
 [data-theme="yellow"] {
-  --primary: #f59e0b;
-  --primary-hover: #d97706;
+  --primary: #ffc72c;
+  --primary-hover: #f59e0b;
   --primary-light: #fef3c7;
   --primary-bg: #fffbeb;
-  --accent: #ec4899;
-  --ring: #f59e0b;
+  --accent: #e40046;
+  --ring: #ffc72c;
 }
 
 [data-theme="green"] {
@@ -52,12 +58,12 @@
 }
 
 [data-theme="pink"] {
-  --primary: #ec4899;
-  --primary-hover: #db2777;
+  --primary: #e40046;
+  --primary-hover: #be123c;
   --primary-light: #fce7f3;
   --primary-bg: #fdf2f8;
-  --accent: #3b82f6;
-  --ring: #ec4899;
+  --accent: #00a3e0;
+  --ring: #e40046;
 }
 
 /* Background floating doodle keyframes */
@@ -95,10 +101,10 @@
 
 /* Glassmorphism utils */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 .glass-dropdown {
