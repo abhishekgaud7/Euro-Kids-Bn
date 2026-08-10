@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -7,13 +7,22 @@ import { EnquiryDrawer } from './components/EnquiryDrawer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 import { HomePage } from './pages/HomePage';
-import { AboutPage } from './pages/AboutPage';
-import { ProgramsPage } from './pages/ProgramsPage';
-import { AdmissionsPage } from './pages/AdmissionsPage';
-import { CampusPage } from './pages/CampusPage';
-import { GalleryPage } from './pages/GalleryPage';
-import { FeedbacksPage } from './pages/FeedbacksPage';
-import { ContactPage } from './pages/ContactPage';
+
+// Lazy load secondary routes for instant initial page bundle loading
+const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const ProgramsPage = lazy(() => import('./pages/ProgramsPage').then(m => ({ default: m.ProgramsPage })));
+const AdmissionsPage = lazy(() => import('./pages/AdmissionsPage').then(m => ({ default: m.AdmissionsPage })));
+const CampusPage = lazy(() => import('./pages/CampusPage').then(m => ({ default: m.CampusPage })));
+const GalleryPage = lazy(() => import('./pages/GalleryPage').then(m => ({ default: m.GalleryPage })));
+const FeedbacksPage = lazy(() => import('./pages/FeedbacksPage').then(m => ({ default: m.FeedbacksPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
+
+const PageLoadingFallback = () => (
+  <div className="py-20 flex flex-col items-center justify-center space-y-3">
+    <div className="w-10 h-10 border-4 border-blue-200 border-t-blue-700 rounded-full animate-spin" />
+    <p className="text-xs font-bold text-slate-500">Loading EuroKids...</p>
+  </div>
+);
 
 export const MainApp: React.FC = () => {
   const location = useLocation();
@@ -40,16 +49,18 @@ export const MainApp: React.FC = () => {
 
         {/* Page Content */}
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <Routes>
-            <Route path="/" element={<HomePage onNavigateTab={setActiveTab} />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/programs" element={<ProgramsPage />} />
-            <Route path="/admissions" element={<AdmissionsPage />} />
-            <Route path="/campus" element={<CampusPage />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/feedbacks" element={<FeedbacksPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-          </Routes>
+          <Suspense fallback={<PageLoadingFallback />}>
+            <Routes>
+              <Route path="/" element={<HomePage onNavigateTab={setActiveTab} />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/programs" element={<ProgramsPage />} />
+              <Route path="/admissions" element={<AdmissionsPage />} />
+              <Route path="/campus" element={<CampusPage />} />
+              <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/feedbacks" element={<FeedbacksPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+            </Routes>
+          </Suspense>
         </main>
 
         {/* Preschool Footer */}
