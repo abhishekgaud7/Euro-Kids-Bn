@@ -81,9 +81,25 @@ export const HeroPhotoSlider: React.FC = () => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Sleek Stage Showcase Slider */}
-      <div className="relative h-[280px] sm:h-[360px] md:h-[420px] lg:h-[460px] w-full overflow-hidden bg-slate-950">
-        {/* Fit Size Image Slide with Smooth Transition */}
+      {/* Sleek Stage Showcase Slider - Perfectly Aligned Uncropped Framing */}
+      <div className="relative h-[280px] sm:h-[360px] md:h-[420px] lg:h-[460px] w-full flex items-center justify-center overflow-hidden bg-slate-950">
+        {/* Soft Ambient Blurred Background for Seamless Color Alignment */}
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={`bg-${currentSlide.id}`}
+            src={currentSlide.image}
+            alt=""
+            loading="eager"
+            decoding="async"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.4 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 pointer-events-none"
+          />
+        </AnimatePresence>
+
+        {/* 100% Uncropped Perfectly Aligned Child Photo */}
         <AnimatePresence mode="wait">
           <motion.img
             key={`img-${currentSlide.id}`}
@@ -91,11 +107,11 @@ export const HeroPhotoSlider: React.FC = () => {
             alt={currentSlide.caption}
             loading="eager"
             decoding="async"
-            initial={{ opacity: 0, scale: 1.03 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
+            exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="w-full h-full object-cover object-center"
+            className="relative z-10 h-full w-auto max-w-full object-contain mx-auto drop-shadow-2xl py-1.5"
           />
         </AnimatePresence>
 
