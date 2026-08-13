@@ -1,0 +1,8 @@
+# EuroKids Balwant Nagar, Gwalior - Search Engine Robots File
+User-agent: *
+Allow: /
+Disallow: /eurokids-owner-gate
+Disallow: /admin
+
+# Sitemap location
+Sitemap: https://eurokidsbalwantnagar.com/sitemap.xml
