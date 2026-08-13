@@ -77,29 +77,13 @@ export const HeroPhotoSlider: React.FC = () => {
 
   return (
     <div
-      className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-950 group max-w-7xl mx-auto my-3"
+      className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-950 group max-w-4xl mx-auto my-2"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Sleek Stage Showcase Slider - Perfectly Aligned Uncropped Framing */}
-      <div className="relative h-[280px] sm:h-[360px] md:h-[420px] lg:h-[460px] w-full flex items-center justify-center overflow-hidden bg-slate-950">
-        {/* Soft Ambient Blurred Background for Seamless Color Alignment */}
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={`bg-${currentSlide.id}`}
-            src={currentSlide.image}
-            alt=""
-            loading="eager"
-            decoding="async"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 pointer-events-none"
-          />
-        </AnimatePresence>
-
-        {/* 100% Uncropped Perfectly Aligned Child Photo */}
+      {/* Compact Box Container with Large Fit Image Inside */}
+      <div className="relative h-[260px] sm:h-[320px] md:h-[360px] lg:h-[380px] w-full overflow-hidden bg-slate-950">
+        {/* Large Fit Image Slide */}
         <AnimatePresence mode="wait">
           <motion.img
             key={`img-${currentSlide.id}`}
@@ -107,34 +91,34 @@ export const HeroPhotoSlider: React.FC = () => {
             alt={currentSlide.caption}
             loading="eager"
             decoding="async"
-            initial={{ opacity: 0, scale: 0.97 }}
+            initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.02 }}
+            exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="relative z-10 h-full w-auto max-w-full object-contain mx-auto drop-shadow-2xl py-1.5"
+            className="w-full h-full object-cover object-center"
           />
         </AnimatePresence>
 
         {/* Top Badges overlay */}
-        <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
-          <span className="bg-amber-400 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 uppercase tracking-wider">
-            <Camera className="w-4 h-4 text-slate-950" />
+        <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-2">
+          <span className="bg-amber-400 text-slate-950 text-xs font-black px-3 py-1 rounded-full shadow-lg flex items-center gap-1.5 uppercase tracking-wider">
+            <Camera className="w-3.5 h-3.5 text-slate-950" />
             <span>EuroKids Balwant Nagar</span>
           </span>
-          <span className="bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full hidden sm:inline-block border border-white/20">
+          <span className="bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full hidden sm:inline-block border border-white/20">
             {currentSlide.tag}
           </span>
         </div>
 
         {/* Counter Top Right */}
-        <div className="absolute top-4 right-4 z-20 bg-slate-900/80 backdrop-blur-md text-white text-xs font-black px-3 py-1.5 rounded-full border border-white/20 shadow-md">
+        <div className="absolute top-3.5 right-3.5 z-20 bg-slate-900/80 backdrop-blur-md text-white text-xs font-black px-3 py-1 rounded-full border border-white/20 shadow-md">
           {currentIndex + 1} / {PHOTO_SLIDES.length}
         </div>
 
         {/* Navigation Arrows */}
         <button
           onClick={goToPrev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-2xl bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 shadow-xl transition-all opacity-80 hover:opacity-100 hover:scale-105"
+          className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-2xl bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 shadow-xl transition-all opacity-80 hover:opacity-100 hover:scale-105"
           aria-label="Previous Photo"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -142,15 +126,15 @@ export const HeroPhotoSlider: React.FC = () => {
 
         <button
           onClick={goToNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-2xl bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 shadow-xl transition-all opacity-80 hover:opacity-100 hover:scale-105"
+          className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-2xl bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 shadow-xl transition-all opacity-80 hover:opacity-100 hover:scale-105"
           aria-label="Next Photo"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
 
         {/* Caption & Dot Indicators */}
-        <div className="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-10 pb-4 px-6 flex flex-col items-center text-center">
-          <p className="text-sm sm:text-base font-black text-white tracking-wide max-w-2xl mb-2 drop-shadow-md">
+        <div className="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-10 pb-3.5 px-6 flex flex-col items-center text-center">
+          <p className="text-xs sm:text-sm md:text-base font-black text-white tracking-wide max-w-xl mb-2 drop-shadow-md">
             {currentSlide.caption}
           </p>
 
