@@ -26,10 +26,6 @@ export const AgeFinderQuiz: React.FC = () => {
   };
 
   const matchProgram = (months: number) => {
-    // 1.8 yrs = 21.6 months (~20 months) to 36 months => Playgroup
-    // 36 to 48 months => Nursery
-    // 48 to 60 months => Junior KG
-    // 60+ months => Senior KG
     if (months < 36) {
       setRecommendedProgram(PROGRAMS_DATA[0]);
     } else if (months >= 36 && months < 48) {
@@ -62,20 +58,20 @@ export const AgeFinderQuiz: React.FC = () => {
   const IconComponent = recommendedProgram ? getProgramIcon(recommendedProgram.id) : Sparkles;
 
   return (
-    <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 rounded-3xl p-6 md:p-8 border-2 border-amber-200/80 shadow-xl relative overflow-hidden">
-      {/* Background doodles */}
-      <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-200/40 rounded-full blur-2xl pointer-events-none" />
-      <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-rose-200/40 rounded-full blur-2xl pointer-events-none" />
+    <div className="bg-gradient-to-br from-blue-50 via-white to-sky-50 rounded-3xl p-6 md:p-8 border-2 border-blue-200 shadow-xl relative overflow-hidden">
+      {/* Background ambient blue glow */}
+      <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-200/40 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-sky-200/40 rounded-full blur-2xl pointer-events-none" />
 
       <div className="relative z-10">
         <div className="flex items-center gap-2 mb-2">
-          <span className="bg-amber-100 text-amber-900 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-300 flex items-center gap-1.5">
-            <Calculator className="w-3.5 h-3.5 text-amber-600" />
+          <span className="bg-blue-100 text-[#002D80] text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider border border-blue-300 flex items-center gap-1.5">
+            <Calculator className="w-3.5 h-3.5 text-[#0B43A1]" />
             <span>Interactive Program Matcher</span>
           </span>
         </div>
 
-        <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
+        <h3 className="text-2xl md:text-3xl font-extrabold text-[#002D80] tracking-tight mb-2">
           Find the Right EuroKids Program for Your Child
         </h3>
         <p className="text-sm text-slate-600 mb-6">
@@ -88,8 +84,8 @@ export const AgeFinderQuiz: React.FC = () => {
             onClick={() => setInputMode('slider')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               inputMode === 'slider'
-                ? 'bg-amber-500 text-white shadow-md'
-                : 'bg-white/80 text-slate-700 hover:bg-white'
+                ? 'bg-[#0B43A1] text-white shadow-md'
+                : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
             }`}
           >
             Use Age Slider
@@ -98,8 +94,8 @@ export const AgeFinderQuiz: React.FC = () => {
             onClick={() => setInputMode('dob')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               inputMode === 'dob'
-                ? 'bg-amber-500 text-white shadow-md'
-                : 'bg-white/80 text-slate-700 hover:bg-white'
+                ? 'bg-[#0B43A1] text-white shadow-md'
+                : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
             }`}
           >
             Enter Date of Birth
@@ -108,10 +104,10 @@ export const AgeFinderQuiz: React.FC = () => {
 
         {/* Slider Input Controls */}
         {inputMode === 'slider' ? (
-          <div className="bg-white/90 rounded-2xl p-5 border border-amber-100 shadow-sm mb-6">
+          <div className="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm mb-6">
             <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-bold text-slate-800">Child's Current Age:</span>
-              <span className="text-lg font-extrabold text-amber-600 bg-amber-100 px-3 py-1 rounded-xl">
+              <span className="text-lg font-extrabold text-[#002D80] bg-blue-100 px-3 py-1 rounded-xl">
                 {years} Years ({ageMonths} Months)
               </span>
             </div>
@@ -122,9 +118,9 @@ export const AgeFinderQuiz: React.FC = () => {
               step="1"
               value={ageMonths}
               onChange={handleSliderChange}
-              className="w-full h-3 bg-amber-100 rounded-lg appearance-none cursor-pointer accent-amber-500"
+              className="w-full h-3 bg-blue-100 rounded-lg appearance-none cursor-pointer accent-[#0B43A1]"
             />
-            <div className="flex justify-between text-[11px] font-semibold text-slate-400 mt-2">
+            <div className="flex justify-between text-[11px] font-semibold text-slate-500 mt-2">
               <span>1.8 Yrs (Playgroup)</span>
               <span>3 Yrs (Nursery)</span>
               <span>4 Yrs (Junior KG)</span>
@@ -132,7 +128,7 @@ export const AgeFinderQuiz: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="bg-white/90 rounded-2xl p-5 border border-amber-100 shadow-sm mb-6">
+          <div className="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm mb-6">
             <label className="block text-sm font-bold text-slate-800 mb-2">
               Select Child's Date of Birth:
             </label>
@@ -143,7 +139,7 @@ export const AgeFinderQuiz: React.FC = () => {
                 setDob(e.target.value);
                 calculateAgeFromDob(e.target.value);
               }}
-              className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none text-slate-800 font-medium"
+              className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none text-slate-800 font-medium"
             />
           </div>
         )}
@@ -156,25 +152,25 @@ export const AgeFinderQuiz: React.FC = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              className="bg-white rounded-2xl p-6 border-2 border-amber-400 shadow-lg relative"
+              className="bg-white rounded-2xl p-6 border-2 border-[#0B43A1] shadow-lg relative"
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-md">
+                  <div className="w-12 h-12 rounded-2xl bg-[#002D80] text-white flex items-center justify-center shadow-md">
                     <IconComponent className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-amber-600 uppercase tracking-wider">
+                    <span className="text-xs font-bold text-[#0B43A1] uppercase tracking-wider">
                       Recommended Program
                     </span>
-                    <h4 className="text-2xl font-black text-slate-900 leading-none mt-0.5">
+                    <h4 className="text-2xl font-black text-[#002D80] leading-none mt-0.5">
                       {recommendedProgram.name}
                     </h4>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="bg-amber-100 text-amber-800 text-xs font-extrabold px-3 py-1.5 rounded-full border border-amber-200">
+                  <span className="bg-blue-100 text-[#002D80] text-xs font-extrabold px-3 py-1.5 rounded-full border border-blue-200">
                     Age: {recommendedProgram.ageGroup}
                   </span>
                   <span className="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full">
@@ -203,7 +199,7 @@ export const AgeFinderQuiz: React.FC = () => {
 
                 <button
                   onClick={openEnquiryDrawer}
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95"
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#002D80] hover:bg-[#0B43A1] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95"
                 >
                   <span>Enquire for {recommendedProgram.name}</span>
                   <ArrowRight className="w-4 h-4" />
