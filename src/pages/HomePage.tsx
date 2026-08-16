@@ -18,19 +18,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
 
   return (
     <div className="space-y-10 py-4 md:py-6">
-      {/* 1. TOP CAROUSEL: Auto-sliding Real Campus Photo Showcase (Normal Height, Directly Below Navbar) */}
-      <section className="space-y-2">
-        <HeroPhotoSlider />
-      </section>
-
-      {/* 2. ADMISSION ANNOUNCEMENT & STATS BANNER (DIRECTLY BELOW SLIDER) */}
-      <section className="relative rounded-3xl bg-gradient-to-br from-[#002D80] via-[#0B43A1] to-blue-900 p-6 md:p-10 overflow-hidden shadow-xl border-4 border-white text-white">
+      {/* 1. SIDE-BY-SIDE (AAMNE-SAMNE) GRAND HERO BANNER */}
+      <section className="relative rounded-3xl bg-gradient-to-br from-[#002D80] via-[#0B43A1] to-blue-900 p-6 sm:p-8 lg:p-10 overflow-hidden shadow-2xl border-4 border-white text-white">
         {/* Animated Background Doodles */}
-        <div className="absolute top-6 left-10 w-24 h-24 bg-white/10 rounded-full blur-xl animate-float-slow" />
-        <div className="absolute bottom-10 right-12 w-32 h-32 bg-sky-400/20 rounded-full blur-2xl animate-float-delayed" />
+        <div className="absolute top-6 left-10 w-24 h-24 bg-white/10 rounded-full blur-xl animate-float-slow pointer-events-none" />
+        <div className="absolute bottom-10 right-12 w-32 h-32 bg-sky-400/20 rounded-full blur-2xl animate-float-delayed pointer-events-none" />
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div className="lg:col-span-8 space-y-4">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          {/* Left Column: Headline, CTAs, Stats & Bulletins */}
+          <div className="lg:col-span-7 space-y-5">
             <div className="inline-flex items-center gap-2 bg-amber-400 text-slate-950 px-4 py-1.5 rounded-full text-xs font-black shadow-md">
               <Sparkles className="w-4 h-4 text-slate-950 animate-spin" />
               <span>Admissions Open 2026-27 • Balwant Nagar, Gwalior</span>
@@ -44,7 +41,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
               EuroKids Balwant Nagar, Thatipur, Gwalior provides a gentle, joyful transition into early learning with CCTV safety, nature play, and the Heureka thinking curriculum.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
                 onClick={openEnquiryDrawer}
                 className="px-7 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-xl hover:shadow-2xl transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
@@ -64,46 +61,42 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
             </div>
 
             {/* Quick Stats Grid */}
-            <div className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="pt-3 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-3">
               {schoolInfo.stats.map((stat, idx) => (
-                <div key={idx} className="bg-white/10 backdrop-blur-xs p-3 rounded-2xl border border-white/20">
+                <div key={idx} className="bg-white/10 backdrop-blur-xs p-2.5 rounded-2xl border border-white/20">
                   <p className="text-xs font-extrabold text-amber-300 leading-tight">{stat.value}</p>
                   <p className="text-[10px] text-slate-200 font-semibold mt-0.5">{stat.label}</p>
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Director & Safety Quick Card */}
-          <div className="lg:col-span-4 bg-white p-6 rounded-3xl border-2 border-white shadow-lg space-y-3 text-slate-900">
-            <span className="bg-blue-100 text-[#002D80] text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider border border-blue-200">
-              EuroKids Quality Care
-            </span>
-            <h3 className="text-base font-extrabold text-slate-900">Why Gwalior Parents Choose Us</h3>
-            <div className="space-y-2 text-xs text-slate-700">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+            {/* Safety & Quality Bulletins */}
+            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-bold text-slate-100">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                 <span>100% CCTV & Police Verified Staff</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>Heureka Visible Thinking Curriculum</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>Supervised Transport Across Gwalior</span>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>Heureka Visible Thinking Pedagogy</span>
               </div>
             </div>
           </div>
+
+          {/* Right Column: High-Res Hero Photo Slider (AAMNE-SAMNE) */}
+          <div className="lg:col-span-5 w-full">
+            <HeroPhotoSlider />
+          </div>
+
         </div>
       </section>
 
-      {/* 3. AGE FINDER QUIZ SECTION */}
+      {/* 2. AGE FINDER QUIZ SECTION */}
       <section>
         <AgeFinderQuiz />
       </section>
 
-      {/* 4. PROGRAMS OVERVIEW CARDS */}
+      {/* 3. PROGRAMS OVERVIEW CARDS */}
       <section className="space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="bg-blue-100 text-[#002D80] text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider border border-blue-200">
@@ -174,7 +167,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
         </div>
       </section>
 
-      {/* 5. DAY ROUTINE PREVIEW */}
+      {/* 4. DAY ROUTINE PREVIEW */}
       <section className="bg-[#002D80] rounded-3xl p-6 md:p-10 text-white relative overflow-hidden shadow-xl border-4 border-white">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-blue-700/50 pb-6">
           <div>
@@ -202,7 +195,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
         </div>
       </section>
 
-      {/* 6. TESTIMONIALS SPOTLIGHT */}
+      {/* 5. TESTIMONIALS SPOTLIGHT */}
       <section className="space-y-6">
         <div className="text-center max-w-xl mx-auto space-y-2">
           <span className="bg-blue-100 text-[#002D80] text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider border border-blue-200">
