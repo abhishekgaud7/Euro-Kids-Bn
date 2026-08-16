@@ -15,6 +15,7 @@ interface DataContextType {
   deleteTestimonial: (id: string) => void;
   galleryItems: GalleryImage[];
   addGalleryImage: (item: Omit<GalleryImage, 'id'>) => void;
+  updateGalleryImage: (id: string, updatedFields: Partial<GalleryImage>) => void;
   deleteGalleryImage: (id: string) => void;
   isBookVisitOpen: boolean;
   openBookVisit: () => void;
@@ -146,6 +147,11 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     toast.success('Gallery photo added successfully!');
   };
 
+  const updateGalleryImage = (id: string, updatedFields: Partial<GalleryImage>) => {
+    setGalleryItems(prev => prev.map(g => g.id === id ? { ...g, ...updatedFields } : g));
+    toast.success('Gallery photo replaced successfully!');
+  };
+
   const deleteGalleryImage = (id: string) => {
     setGalleryItems(prev => prev.filter(g => g.id !== id));
     toast.success('Photo deleted from gallery');
@@ -164,6 +170,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       deleteTestimonial,
       galleryItems,
       addGalleryImage,
+      updateGalleryImage,
       deleteGalleryImage,
       isBookVisitOpen,
       openBookVisit: () => setIsBookVisitOpen(true),

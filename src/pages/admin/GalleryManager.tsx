@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Plus, Trash2, Image as ImageIcon, Upload, Sparkles } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Plus, Trash2, Image as ImageIcon, Upload, Sparkles, RefreshCw, Edit2 } from 'lucide-react';
 import { useData } from '../../contexts/DataContext';
 import toast from 'react-hot-toast';
 
 export const GalleryManager: React.FC = () => {
-  const { galleryItems, addGalleryImage, deleteGalleryImage } = useData();
+  const { galleryItems, addGalleryImage, updateGalleryImage, deleteGalleryImage } = useData();
 
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('Activities');
@@ -12,7 +12,11 @@ export const GalleryManager: React.FC = () => {
   const [caption, setCaption] = useState('');
   const [isAddOpen, setIsAddOpen] = useState(false);
 
-  // File Picker Handler (Convert image file to Base64)
+  // Active item ID being replaced
+  const [replacingId, setReplacingId] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // File Picker Handler for Adding New Image
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -29,6 +33,35 @@ export const GalleryManager: React.FC = () => {
         }
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  // File Picker Handler for REPLACING Existing Image
+  const handleReplaceFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && replacingId) {
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error('Image size should be less than 5 MB');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (reader.result) {
+          updateGalleryImage(replacingId, { image: reader.result.toString() });
+          toast.success('Photo replaced successfully!');
+          setReplacingId(null);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const triggerReplace = (id: string) => {
+    setReplacingId(id);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+      fileInputRef.current.click();
     }
   };
 
@@ -55,6 +88,15 @@ export const GalleryManager: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {/* Hidden File Input for 1-Click Replace */}
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleReplaceFileChange}
+        accept="image/*"
+        className="hidden"
+      />
+
       {/* Top Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
         <div>
@@ -62,9 +104,9 @@ export const GalleryManager: React.FC = () => {
             <Sparkles className="w-3.5 h-3.5 text-blue-600" />
             <span>Campus Gallery Manager</span>
           </span>
-          <h1 className="text-2xl font-black text-slate-900">Upload & Manage School Photos</h1>
+          <h1 className="text-2xl font-black text-slate-900">Upload, Replace & Manage School Photos</h1>
           <p className="text-xs text-slate-500 mt-0.5">
-            Aap phone ya computer se direct naye photos select karke website ke gallery me add kar sakte hain.
+            Aap kisibhi photo ko direct 1-Click me **Replace** (nayi photo se change) ya **Delete** kar sakte hain.
           </p>
         </div>
 
@@ -153,37 +195,63 @@ export const GalleryManager: React.FC = () => {
         </form>
       )}
 
-      {/* EXISTING GALLERY GRID WITH 1-CLICK DELETE */}
+      {/* EXISTING GALLERY GRID WITH 1-CLICK REPLACE & DELETE */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {galleryItems.map((item) => (
-          <div key={item.id} className="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden group hover:shadow-xl transition-all">
-            <div className="relative h-48 bg-slate-100 overflow-hidden">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <span className="absolute top-3 left-3 bg-slate-900/80 text-white text-[10px] font-black px-2.5 py-1 rounded-md backdrop-blur-xs">
-                {item.category}
-              </span>
+          <div key={item.id} className="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden group hover:shadow-xl transition-all flex flex-col justify-between">
+            <div>
+              <div className="relative h-48 bg-slate-100 overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <span className="absolute top-3 left-3 bg-slate-900/80 text-white text-[10px] font-black px-2.5 py-1 rounded-md backdrop-blur-xs">
+                  {item.category}
+                </span>
 
-              <button
-                onClick={() => {
-                  deleteGalleryImage(item.id);
-                  toast.success('Photo removed from website gallery!');
-                }}
-                className="absolute top-3 right-3 p-2 rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-md transition-transform hover:scale-110"
-                title="Delete Photo"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
+                {/* Top Right Action Buttons: Replace & Delete */}
+                <div className="absolute top-3 right-3 flex items-center gap-2">
+                  <button
+                    onClick={() => triggerReplace(item.id)}
+                    className="p-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 shadow-md transition-transform hover:scale-110 flex items-center gap-1 text-[11px] font-bold px-2.5"
+                    title="Replace Photo with New Image File"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5" />
+                    <span>Replace</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      deleteGalleryImage(item.id);
+                      toast.success('Photo removed from website gallery!');
+                    }}
+                    className="p-2 rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-md transition-transform hover:scale-110"
+                    title="Delete Photo"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="p-4">
+                <h4 className="font-extrabold text-slate-900 text-sm">{item.title}</h4>
+                <p className="text-xs text-slate-500 font-medium mt-1 line-clamp-2">
+                  {item.caption || 'Live photo on EuroKids website gallery.'}
+                </p>
+              </div>
             </div>
 
-            <div className="p-4">
-              <h4 className="font-extrabold text-slate-900 text-sm">{item.title}</h4>
-              <p className="text-xs text-slate-500 font-medium mt-1 line-clamp-2">
-                {item.caption || 'Live photo on EuroKids website gallery.'}
-              </p>
+            {/* Bottom Card Bar: 1-Click Replace Shortcut */}
+            <div className="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Gallery Item</span>
+              <button
+                onClick={() => triggerReplace(item.id)}
+                className="text-xs font-extrabold text-blue-700 hover:text-blue-900 flex items-center gap-1"
+              >
+                <RefreshCw className="w-3 h-3" />
+                <span>Change Image File</span>
+              </button>
             </div>
           </div>
         ))}
