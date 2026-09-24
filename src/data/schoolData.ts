@@ -439,3 +439,129 @@ export const ADMISSION_FAQS = [
     answer: "Yes, we operate safe buses across major parts of Gwalior. A dedicated supervisor travels on every route to look after the children."
   }
 ];
+
+export interface HeurekaModule {
+  name: string;
+  tagline: string;
+}
+
+export interface HeurekaQuotient {
+  id: string;
+  quotient: string;
+  shortDesc: string;
+  color: string;
+  badgeBg: string;
+  textColor: string;
+  borderColor: string;
+  modules: HeurekaModule[];
+}
+
+export const HEUREKA_CURRICULUM: HeurekaQuotient[] = [
+  {
+    id: "eq",
+    quotient: "Emotional Quotient",
+    shortDesc: "Social confidence & emotional intelligence",
+    color: "from-emerald-500 to-teal-600",
+    badgeBg: "bg-emerald-100",
+    textColor: "text-emerald-800",
+    borderColor: "border-emerald-300",
+    modules: [
+      {
+        name: "EUROKONECT",
+        tagline: "Enhancing social and emotional skills through meaningful interactions."
+      }
+    ]
+  },
+  {
+    id: "pq",
+    quotient: "Physical Quotient",
+    shortDesc: "Active living, agility & mindful wellness",
+    color: "from-rose-500 to-red-600",
+    badgeBg: "bg-rose-100",
+    textColor: "text-rose-800",
+    borderColor: "border-rose-300",
+    modules: [
+      {
+        name: "EUROFIT",
+        tagline: "Fostering a love for active living with playful fitness routines."
+      },
+      {
+        name: "YOGAKIDS",
+        tagline: "Encouraging mindfulness and flexibility for balanced physical and mental health."
+      },
+      {
+        name: "EUPLAY",
+        tagline: "Promoting learning through the power of imaginative and structured play."
+      }
+    ]
+  },
+  {
+    id: "iq",
+    quotient: "Intellectual Quotient",
+    shortDesc: "Language, math, logic, science & coding",
+    color: "from-blue-600 to-indigo-700",
+    badgeBg: "bg-blue-100",
+    textColor: "text-blue-800",
+    borderColor: "border-blue-300",
+    modules: [
+      {
+        name: "LITQUEST",
+        tagline: "Unlock your child's communication potential with engaging language adventures."
+      },
+      {
+        name: "MATHQUEST",
+        tagline: "Building confidence in numbers and logic through hands-on exploration."
+      },
+      {
+        name: "SCIQUEST",
+        tagline: "Cultivating curiosity and critical thinking with interactive science experiments."
+      },
+      {
+        name: "CODEQUEST",
+        tagline: "Introducing coding basics to spark problem-solving and innovation."
+      },
+      {
+        name: "THINKQUEST",
+        tagline: "Fostering strategic thinking and analytical reasoning for life's challenges."
+      }
+    ]
+  },
+  {
+    id: "cq",
+    quotient: "Creative Quotient",
+    shortDesc: "Vibrant art, rhythm, music & coordination",
+    color: "from-purple-500 to-pink-600",
+    badgeBg: "bg-purple-100",
+    textColor: "text-purple-800",
+    borderColor: "border-purple-300",
+    modules: [
+      {
+        name: "EUROART",
+        tagline: "Inspiring creativity and self-expression through vibrant art experiences."
+      },
+      {
+        name: "EUROMUSIC",
+        tagline: "Nurturing rhythm and harmony to enhance auditory and emotional growth."
+      },
+      {
+        name: "EUROMOVE",
+        tagline: "Building coordination and fitness with fun, movement-based activities."
+      }
+    ]
+  },
+  {
+    id: "sq",
+    quotient: "Spiritual Quotient",
+    shortDesc: "Empathy, kindness, compassion & mindfulness",
+    color: "from-amber-500 to-yellow-600",
+    badgeBg: "bg-amber-100",
+    textColor: "text-amber-800",
+    borderColor: "border-amber-300",
+    modules: [
+      {
+        name: "ELEVATE",
+        tagline: "Instilling empathy, compassion, and mindfulness for spiritual growth."
+      }
+    ]
+  }
+];

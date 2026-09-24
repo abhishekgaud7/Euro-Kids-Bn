@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Heart,
@@ -11,13 +11,22 @@ import {
   Palette,
   ShieldCheck,
   Sparkles,
-  CheckCircle2
+  CheckCircle2,
+  Brain,
+  Activity,
+  Music,
+  Lightbulb,
+  Eye,
+  Layers,
+  Compass
 } from 'lucide-react';
-import { DAY_ROUTINE, FACULTY_MEMBERS } from '../data/schoolData';
+import { DAY_ROUTINE, FACULTY_MEMBERS, HEUREKA_CURRICULUM } from '../data/schoolData';
 import { useData } from '../contexts/DataContext';
 
 export const AboutPage: React.FC = () => {
   const { schoolInfo } = useData();
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
+  const [activeQuotientTab, setActiveQuotientTab] = useState<string>('all');
 
   const getRoutineIcon = (iconName: string) => {
     switch (iconName) {
@@ -31,6 +40,21 @@ export const AboutPage: React.FC = () => {
       default: return Sparkles;
     }
   };
+
+  const getQuotientIcon = (id: string) => {
+    switch (id) {
+      case 'eq': return Heart;
+      case 'pq': return Activity;
+      case 'iq': return Brain;
+      case 'cq': return Palette;
+      case 'sq': return Sparkles;
+      default: return Lightbulb;
+    }
+  };
+
+  const filteredQuotients = activeQuotientTab === 'all'
+    ? HEUREKA_CURRICULUM
+    : HEUREKA_CURRICULUM.filter(q => q.id === activeQuotientTab);
 
   return (
     <div className="space-y-16 py-6 md:py-10">
@@ -49,56 +73,144 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* PHILOSOPHY & HEUREKA CURRICULUM */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div className="lg:col-span-6 space-y-5">
-          <span className="bg-sky-100 text-sky-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider border border-sky-200">
-            Our Pedagogy
-          </span>
-          <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-            The Heureka Visible Thinking Curriculum
-          </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
-            We believe learning happens best when children engage their senses. The Heureka framework encourages toddlers to think aloud, ask questions, manipulate tactile objects, and express their ideas without fear of being wrong.
-          </p>
-
-          <div className="space-y-3 pt-2">
-            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-start gap-3">
-              <Sparkles className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="text-sm font-bold text-slate-900">Mindful Sensory Stations</h4>
-                <p className="text-xs text-slate-600">Sand, clay, water sorting, and tactile word wheels for motor coordination.</p>
-              </div>
+      {/* DISCOVER THE 8TH EDITION HEUREKA CURRICULUM */}
+      <section className="bg-white rounded-3xl p-6 md:p-10 border border-slate-200 shadow-xl space-y-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-slate-100">
+          <div className="space-y-3 max-w-3xl">
+            <div className="inline-flex items-center gap-2 bg-[#002D80] text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>Discover the 8th Edition of EuroKids Curriculum</span>
             </div>
-
-            <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 flex items-start gap-3">
-              <Heart className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="text-sm font-bold text-slate-900">Emotional First Principles</h4>
-                <p className="text-xs text-slate-600">Encouraging toddlers to express feelings, resolve small disputes, and share toys gently.</p>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-start gap-3">
-              <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="text-sm font-bold text-slate-900">Guarded & Verified Safety</h4>
-                <p className="text-xs text-slate-600">Every staff member is police verified; classrooms & gates feature live CCTV cameras.</p>
-              </div>
-            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              HEUREKA™ — The Visible Thinking Curriculum
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Rooted in the renowned Harvard Zero Project framework, the 8th Edition Heureka curriculum makes young children's thinking active, visible, and expressive. It holistically empowers every child across <strong>5 Foundational Quotients</strong>.
+            </p>
           </div>
+
+          <button
+            type="button"
+            onClick={() => setShowBrochureModal(true)}
+            className="px-5 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition-all shadow-md hover:scale-105 flex items-center gap-2 shrink-0 cursor-pointer"
+          >
+            <Eye className="w-4 h-4" />
+            <span>View Official Brochure Poster</span>
+          </button>
         </div>
 
-        <div className="lg:col-span-6 relative">
-          <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-            <img
-              src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800"
-              alt="Heureka Curriculum Activity"
-              className="w-full h-96 object-cover"
-            />
-          </div>
+        {/* Quotient Filter Buttons */}
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setActiveQuotientTab('all')}
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              activeQuotientTab === 'all'
+                ? 'bg-[#002D80] text-white shadow-md'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+            }`}
+          >
+            All 5 Quotients (Overview)
+          </button>
+          {HEUREKA_CURRICULUM.map((q) => (
+            <button
+              key={q.id}
+              type="button"
+              onClick={() => setActiveQuotientTab(q.id)}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                activeQuotientTab === q.id
+                  ? 'bg-[#002D80] text-white shadow-md'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              {q.quotient}
+            </button>
+          ))}
+        </div>
+
+        {/* 5 Quotients Detailed Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredQuotients.map((q) => {
+            const QIcon = getQuotientIcon(q.id);
+            return (
+              <motion.div
+                key={q.id}
+                whileHover={{ y: -4 }}
+                className="bg-slate-50/80 rounded-3xl p-6 border-2 border-slate-200 hover:border-[#0B43A1] transition-all flex flex-col justify-between shadow-xs hover:shadow-md"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className={`text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full ${q.badgeBg} ${q.textColor} border ${q.borderColor}`}>
+                      {q.quotient}
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-white shadow-xs flex items-center justify-center text-slate-700">
+                      <QIcon className="w-4 h-4 text-[#0B43A1]" />
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-slate-600 font-semibold mb-5">
+                    {q.shortDesc}
+                  </p>
+
+                  <div className="space-y-3">
+                    {q.modules.map((mod, i) => (
+                      <div key={i} className="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                          <h4 className="text-xs font-black tracking-wide text-slate-900">
+                            {mod.name}
+                          </h4>
+                        </div>
+                        <p className="text-[11px] text-slate-600 leading-relaxed pl-5">
+                          {mod.tagline}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-5 pt-3 border-t border-slate-200/60 text-[10px] text-slate-400 font-bold uppercase tracking-wider text-right">
+                  {q.modules.length} {q.modules.length === 1 ? 'Core Module' : 'Dedicated Modules'}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
+
+      {/* BROCHURE POSTER LIGHTBOX MODAL */}
+      {showBrochureModal && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setShowBrochureModal(false)}
+        >
+          <div
+            className="bg-white rounded-3xl max-w-2xl w-full p-4 sm:p-6 shadow-2xl relative space-y-4 max-h-[92vh] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+              <div>
+                <h3 className="text-sm font-black text-slate-900">EuroKids Heureka 8th Edition Curriculum</h3>
+                <p className="text-[11px] text-blue-600 font-semibold">Official Visible Thinking Pedagogy Chart</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowBrochureModal(false)}
+                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 cursor-pointer font-bold"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="overflow-auto rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-center p-2">
+              <img
+                src="/images/feedbacks/curriculum-heureka.jpeg"
+                alt="EuroKids Heureka Curriculum"
+                className="max-h-[72vh] w-auto object-contain rounded-xl shadow-inner"
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* FULL DAY ROUTINE TIMELINE */}
       <section className="bg-white rounded-3xl p-6 md:p-10 border border-slate-200 shadow-xl">

@@ -7,7 +7,7 @@ import { HeroPhotoSlider } from '../components/HeroPhotoSlider';
 import { AgeFinderQuiz } from '../components/AgeFinderQuiz';
 
 import { useData } from '../contexts/DataContext';
-import { PROGRAMS_DATA, DAY_ROUTINE } from '../data/schoolData';
+import { PROGRAMS_DATA, HEUREKA_CURRICULUM } from '../data/schoolData';
 
 interface HomePageProps {
   onNavigateTab: (tabId: string) => void;
@@ -168,30 +168,56 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
         </div>
       </section>
 
-      {/* 4. DAY ROUTINE PREVIEW */}
-      <section className="bg-[#002D80] rounded-3xl p-6 md:p-10 text-white relative overflow-hidden shadow-xl border-4 border-white">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-blue-700/50 pb-6">
+      {/* 4. HEUREKA CURRICULUM HINT PREVIEW */}
+      <section className="bg-gradient-to-br from-[#002D80] via-[#0B43A1] to-blue-950 rounded-3xl p-6 md:p-10 text-white relative overflow-hidden shadow-xl border-4 border-white">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-blue-700/50 pb-6 relative z-10">
           <div>
-            <span className="bg-blue-400/20 text-blue-200 text-xs font-extrabold px-3 py-1 rounded-full border border-blue-300/30 uppercase tracking-wider mb-2 inline-block">
-              Daily Rhythm
-            </span>
-            <h2 className="text-3xl font-black tracking-tight">A Typical Day at EuroKids</h2>
+            <div className="inline-flex items-center gap-2 bg-amber-400 text-slate-950 text-xs font-black px-3.5 py-1 rounded-full shadow-sm mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-slate-950" />
+              <span>8th Edition EuroKids Curriculum</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
+              HEUREKA - The Visible Thinking Pedagogy
+            </h2>
+            <p className="text-xs sm:text-sm text-blue-200 mt-1 max-w-2xl">
+              Developed on Harvard Zero Project principles, nurturing early holistic development across 5 essential life quotients.
+            </p>
           </div>
           <Link
             to="/about"
-            className="px-5 py-2.5 rounded-xl bg-[#0B43A1] hover:bg-blue-700 text-white font-bold text-xs self-start md:self-auto transition-colors shadow-md"
+            className="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs self-start md:self-auto transition-all shadow-md hover:scale-105 flex items-center gap-1.5 shrink-0"
           >
-            Learn Full Routine & Pedagogy
+            <span>Explore All 5 Quotients</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {DAY_ROUTINE.slice(0, 4).map((step, idx) => (
-            <div key={idx} className="bg-blue-900/60 p-5 rounded-2xl border border-blue-600/40">
-              <span className="text-xs font-extrabold text-amber-300 block mb-1">{step.time}</span>
-              <h4 className="text-base font-bold mb-1 text-white">{step.title}</h4>
-              <p className="text-xs text-blue-100 leading-relaxed">{step.description}</p>
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 relative z-10">
+          {HEUREKA_CURRICULUM.map((q) => (
+            <Link
+              key={q.id}
+              to="/about"
+              className="bg-white/10 hover:bg-white/20 backdrop-blur-xs p-4 rounded-2xl border border-white/15 transition-all hover:translate-y-[-4px] group flex flex-col justify-between"
+            >
+              <div>
+                <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md ${q.badgeBg} ${q.textColor} inline-block mb-2`}>
+                  {q.quotient.replace(" Quotient", " (Q)")}
+                </span>
+                <h4 className="text-sm font-extrabold text-white group-hover:text-amber-300 transition-colors">
+                  {q.quotient}
+                </h4>
+                <p className="text-[11px] text-blue-100 font-medium mt-1 leading-snug">
+                  {q.shortDesc}
+                </p>
+              </div>
+              <div className="mt-3 pt-2.5 border-t border-white/10">
+                <p className="text-[10px] font-bold text-amber-300 line-clamp-1">
+                  {q.modules.map(m => m.name).join(" • ")}
+                </p>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
