@@ -198,11 +198,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
 
       {/* 5. TESTIMONIALS SPOTLIGHT */}
       <section className="space-y-6">
-        <div className="text-center max-w-xl mx-auto space-y-2">
-          <span className="bg-blue-100 text-[#002D80] text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider border border-blue-200">
+        <div className="text-center max-w-xl mx-auto">
+          <span className="bg-blue-100 text-[#002D80] text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider border border-blue-200 inline-block">
             Parent Feedback
           </span>
-          <h2 className="text-3xl font-black text-slate-900 tracking-tight">What Gwalior Parents Say</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -234,19 +233,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
                 )}
               </div>
 
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
-                <img
-                  src={item.avatar}
-                  alt={item.parentName}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-10 h-10 rounded-full object-cover border border-blue-200"
-                />
-                <div>
-                  <h4 className="text-xs font-extrabold text-slate-900">{item.parentName}</h4>
-                  <p className="text-[11px] text-slate-500 font-medium">{item.childNameAndGrade}</p>
-                  <p className="text-[10px] text-[#0B43A1] font-semibold">{item.locality}</p>
-                </div>
+              <div className="pt-4 border-t border-slate-100">
+                <h4 className="text-xs font-extrabold text-slate-900">{item.parentName}</h4>
+                <p className="text-[11px] text-slate-500 font-medium">{item.childNameAndGrade}</p>
+                <p className="text-[10px] text-[#0B43A1] font-semibold">{item.locality}</p>
               </div>
             </div>
           ))}

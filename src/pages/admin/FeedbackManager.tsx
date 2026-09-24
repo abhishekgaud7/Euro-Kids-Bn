@@ -30,12 +30,9 @@ export const FeedbackManager: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-              <div className="flex items-center gap-2">
-                <img src={t.avatar} alt={t.parentName} className="w-8 h-8 rounded-full object-cover" />
-                <div>
-                  <h4 className="text-xs font-extrabold text-slate-900">{t.parentName}</h4>
-                  <p className="text-[10px] text-slate-500">{t.childNameAndGrade} • {t.locality}</p>
-                </div>
+              <div>
+                <h4 className="text-xs font-extrabold text-slate-900">{t.parentName}</h4>
+                <p className="text-[10px] text-slate-500">{t.childNameAndGrade} • {t.locality}</p>
               </div>
 
               <button

@@ -85,17 +85,10 @@ export const FeedbacksPage: React.FC = () => {
               )}
             </div>
 
-            <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
-              <img
-                src={item.avatar}
-                alt={item.parentName}
-                className="w-10 h-10 rounded-full object-cover border border-amber-300"
-              />
-              <div>
-                <h4 className="text-xs font-extrabold text-slate-900">{item.parentName}</h4>
-                <p className="text-[11px] text-slate-500 font-medium">{item.childNameAndGrade}</p>
-                <p className="text-[10px] text-amber-600 font-semibold">{item.locality}</p>
-              </div>
+            <div className="pt-4 border-t border-slate-100">
+              <h4 className="text-xs font-extrabold text-slate-900">{item.parentName}</h4>
+              <p className="text-[11px] text-slate-500 font-medium">{item.childNameAndGrade}</p>
+              <p className="text-[10px] text-amber-600 font-semibold">{item.locality}</p>
             </div>
           </motion.div>
         ))}
