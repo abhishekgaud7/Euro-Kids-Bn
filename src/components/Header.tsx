@@ -132,41 +132,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     }
   ];
 
-  // Explore Quick Dropdown Items (Keeps Gallery, Parent Reviews, Admissions, & Contact available cleanly without cluttering navbar)
-  const exploreDropdownItems = [
-    {
-      title: 'Photo Gallery',
-      desc: 'Real photos of events, classrooms & playground.',
-      path: '/gallery',
-      id: 'gallery',
-      icon: ImageIcon,
-      color: 'bg-amber-100 text-amber-700'
-    },
-    {
-      title: 'Parent Reviews & Ratings',
-      desc: 'Read testimonials from Gwalior parents.',
-      path: '/feedbacks',
-      id: 'feedbacks',
-      icon: MessageSquare,
-      color: 'bg-emerald-100 text-emerald-700'
-    },
-    {
-      title: 'Admissions & Downloads',
-      desc: '4-step process, fees & prospectus download.',
-      path: '/admissions',
-      id: 'admissions',
-      icon: FileText,
-      color: 'bg-sky-100 text-sky-700'
-    },
-    {
-      title: 'Contact Us & Location',
-      desc: 'Get in touch with front desk in Thatipur.',
-      path: '/contact',
-      id: 'contact',
-      icon: PhoneCall,
-      color: 'bg-purple-100 text-purple-700'
-    }
-  ];
 
   const themeOptions: { id: ThemeMode; label: string; bg: string; border: string }[] = [
     { id: 'yellow', label: 'Sunbeam Yellow', bg: 'bg-amber-400', border: 'border-amber-500' },
@@ -463,66 +428,19 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               </AnimatePresence>
             </div>
 
-            {/* EXPLORE MORE (HOVER DROPDOWN FOR GALLERY, REVIEWS, ADMISSIONS, CONTACT) */}
-            <div
-              className="relative"
-              onMouseEnter={() => setHoveredMenu('explore')}
-              onMouseLeave={() => setHoveredMenu(null)}
+            {/* PHOTO GALLERY DIRECT LINK */}
+            <Link
+              to="/gallery"
+              onClick={() => handleNavClick('gallery')}
+              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-2xl text-sm font-extrabold transition-all duration-200 ${
+                activeTab === 'gallery' || location.pathname === '/gallery'
+                  ? 'bg-amber-100 text-amber-900 shadow-xs'
+                  : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
+              }`}
             >
-              <button
-                className={`flex items-center gap-1.5 px-4 py-2.5 rounded-2xl text-sm font-extrabold transition-all duration-200 ${
-                  hoveredMenu === 'explore' || ['/gallery', '/feedbacks', '/admissions', '/contact'].includes(location.pathname)
-                    ? 'bg-amber-100 text-amber-900 shadow-xs'
-                    : 'text-slate-700 hover:text-amber-600 hover:bg-amber-50/80'
-                }`}
-              >
-                <Compass className="w-4 h-4 text-amber-600" />
-                <span>Explore ▾</span>
-              </button>
-
-              <AnimatePresence>
-                {hoveredMenu === 'explore' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 6, scale: 0.96 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
-                    className="absolute top-full right-0 mt-1 w-80 glass-dropdown rounded-2xl p-3 shadow-2xl z-50 border border-amber-100"
-                  >
-                    <div className="px-3 py-1.5 mb-1.5 border-b border-slate-100 flex items-center justify-between">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                        Explore Preschool Features
-                      </span>
-                      <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                    </div>
-
-                    <div className="space-y-1">
-                      {exploreDropdownItems.map((item) => {
-                        const IconComp = item.icon;
-                        return (
-                          <Link
-                            key={item.id}
-                            to={item.path}
-                            onClick={() => handleNavClick(item.id)}
-                            className="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-amber-50/80 transition-all"
-                          >
-                            <div className={`p-2 rounded-lg ${item.color} group-hover:scale-105 transition-transform`}>
-                              <IconComp className="w-4 h-4" />
-                            </div>
-                            <div>
-                              <h4 className="text-xs font-bold text-slate-900 group-hover:text-amber-600">
-                                {item.title}
-                              </h4>
-                              <p className="text-[10px] text-slate-500 line-clamp-1">{item.desc}</p>
-                            </div>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+              <ImageIcon className="w-4 h-4 text-amber-600" />
+              <span>Photo Gallery</span>
+            </Link>
           </nav>
 
           {/* Action CTAs */}
