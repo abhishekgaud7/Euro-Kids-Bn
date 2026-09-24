@@ -31,55 +31,27 @@ export const Footer: React.FC = () => {
               {schoolInfo.tagline} Providing a safe, nurturing environment where children discover, play, and prepare for primary school with joy.
             </p>
 
-            <div className="flex items-center gap-2 pt-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 text-emerald-400 text-xs font-semibold border border-slate-700">
-                <ShieldCheck className="w-4 h-4" />
-                <span>CCTV & Verified Staff</span>
+            <div className="flex flex-wrap items-center gap-2 pt-2">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800 text-emerald-400 text-[11px] font-semibold border border-slate-700">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                <span>CCTV & Police Verified Staff</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800 text-amber-400 text-[11px] font-semibold border border-slate-700">
+                <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                <span>TUV Certified Centre</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800 text-sky-400 text-[11px] font-semibold border border-slate-700">
+                <Sparkles className="w-3.5 h-3.5 text-sky-400" />
+                <span>24x7 Power Backup & AC</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800 text-emerald-300 text-[11px] font-semibold border border-slate-700">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
+                <span>Open Green Play Garden</span>
               </div>
             </div>
           </div>
 
-          {/* Column 2: Programs & Curriculum */}
-          <div className="space-y-3">
-            <h4 className="text-sm font-extrabold uppercase tracking-wider text-white flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>Learning Programs</span>
-            </h4>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <Link to="/programs" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                  <span>Playgroup (1.8 - 3 Yrs)</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/programs" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                  <span>Nursery (3 - 4 Yrs)</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/programs" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span>Junior KG (4 - 5 Yrs)</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/programs" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-pink-400" />
-                  <span>Senior KG (5 - 6 Yrs)</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                  <span>Heureka Thinking Curriculum</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Quick Navigation */}
+          {/* Column 2: Quick Links (Shifted from Col 3) */}
           <div className="space-y-3">
             <h4 className="text-sm font-extrabold uppercase tracking-wider text-white">
               Quick Links
@@ -101,14 +73,14 @@ export const Footer: React.FC = () => {
                 <Link to="/feedbacks" className="hover:text-amber-400 transition-colors">Parent Testimonials</Link>
               </li>
               <li>
-                <button onClick={openBookVisit} className="hover:text-amber-400 transition-colors text-left">
+                <button onClick={openBookVisit} className="hover:text-amber-400 transition-colors text-left cursor-pointer">
                   Schedule Campus Walkthrough
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Contact & Location */}
+          {/* Column 3: Contact Details (Shifted from Col 4, without time/date) */}
           <div className="space-y-3">
             <h4 className="text-sm font-extrabold uppercase tracking-wider text-white">
               Get in Touch
@@ -130,22 +102,35 @@ export const Footer: React.FC = () => {
                   {schoolInfo.email}
                 </a>
               </div>
-              <div className="flex items-center gap-2 text-slate-400">
-                <Clock className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>{schoolInfo.officeHours}</span>
-              </div>
+            </div>
+          </div>
 
-              <div className="pt-2">
-                <a
-                  href={schoolInfo.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 border border-amber-500/40 font-semibold transition-colors text-xs"
-                >
-                  <span>Open in Google Maps</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
+          {/* Column 4: Interactive Campus Map */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <h4 className="text-sm font-extrabold uppercase tracking-wider text-white flex items-center gap-1.5">
+                <MapPin className="w-4 h-4 text-amber-400" />
+                <span>Campus Location</span>
+              </h4>
+              <a
+                href={schoolInfo.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition-colors"
+              >
+                <span>Full Map</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden border-2 border-slate-700 shadow-md bg-slate-800 h-44 w-full relative">
+              <iframe
+                title="EuroKids Balwant Nagar Location Map"
+                src="https://maps.google.com/maps?q=26.21089,78.193871&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </div>
