@@ -416,6 +416,41 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     caption: "EuroKids toddlers engaged in playful group learning and teacher interactions."
   },
   {
+    id: "g-cls-3",
+    title: "Montessori Classroom & Activity Tables",
+    category: "Classrooms",
+    image: "/images/gallery/classroom-montessori-setup.jpg",
+    caption: "Child-friendly activity stations with tactile puzzles, bead maze, and creative reading kits."
+  },
+  {
+    id: "g-cls-4",
+    title: "Tactile Shape & Number Puzzles",
+    category: "Classrooms",
+    image: "/images/gallery/classroom-puzzle-learning.jpg",
+    caption: "Young learner developing spatial reasoning and number recognition with wooden puzzle blocks."
+  },
+  {
+    id: "g-cls-5",
+    title: "Creative Practice & Music Tables",
+    category: "Classrooms",
+    image: "/images/gallery/classroom-practice-tables.jpg",
+    caption: "Vibrant classroom setting with musical instruments, low rounded desks, and positive learning boards."
+  },
+  {
+    id: "g-cls-6",
+    title: "Spacious Multi-Activity Learning Room",
+    category: "Classrooms",
+    image: "/images/gallery/classroom-learning-hall.jpg",
+    caption: "Well-ventilated, AC-equipped interactive hall designed for storytelling, group sessions, and parent interactions."
+  },
+  {
+    id: "g-cls-7",
+    title: "Montessori Learning Kits & Toy Corner",
+    category: "Classrooms",
+    image: "/images/gallery/classroom-resource-shelves.jpg",
+    caption: "Curated open shelves with EuroKids learning materials, sensory toys, puppets, and sports sets."
+  },
+  {
     id: "g-act-1",
     title: "Montessori Wooden Blocks & Math Play",
     category: "Activities",
