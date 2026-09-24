@@ -44,9 +44,9 @@ export const EnquiryDrawer: React.FC = () => {
     } else if (selectedAge.includes('3.0') || selectedAge.includes('3.5')) {
       setProgram('Nursery');
     } else if (selectedAge.includes('4.0')) {
-      setProgram('Junior KG');
+      setProgram('EuroJunior');
     } else if (selectedAge.includes('5.0')) {
-      setProgram('Senior KG');
+      setProgram('EuroSenior');
     }
   };
 
@@ -179,8 +179,8 @@ export const EnquiryDrawer: React.FC = () => {
                         <option value="2.5 – 3.0 Years">2.5 – 3.0 Years (Playgroup)</option>
                         <option value="3.0 – 3.5 Years">3.0 – 3.5 Years (Nursery)</option>
                         <option value="3.5 – 4.0 Years">3.5 – 4.0 Years (Nursery)</option>
-                        <option value="4.0 – 5.0 Years">4.0 – 5.0 Years (Junior KG)</option>
-                        <option value="5.0 – 6.0 Years">5.0 – 6.0 Years (Senior KG)</option>
+                        <option value="4.0 – 5.0 Years">4.0 – 5.0 Years (EuroJunior)</option>
+                        <option value="5.0 – 6.0 Years">5.0 – 6.0 Years (EuroSenior)</option>
                       </select>
                     </div>
 

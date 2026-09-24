@@ -19,7 +19,7 @@ export const ProgramsPage: React.FC = () => {
             Comprehensive Preschool Programs (1.8 to 6 Years)
           </h1>
           <p className="text-base text-slate-800 font-medium leading-relaxed">
-            From first steps in Playgroup to confident Grade 1 readiness in Senior KG, explore our age-structured early childhood programs.
+            From first steps in Playgroup to confident Grade 1 readiness in EuroSenior, explore our age-structured early childhood programs.
           </p>
         </div>
       </section>

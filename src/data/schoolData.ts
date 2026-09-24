@@ -85,12 +85,12 @@ export const PROGRAMS_DATA: ProgramItem[] = [
   },
   {
     id: "junior-kg",
-    name: "Junior KG",
+    name: "EuroJunior",
     subtitle: "Connecting ideas, logic, and friends.",
     ageGroup: "4 to 5 Years",
     timing: "9:00 AM to 1:00 PM",
     teacherRatio: "Small groups with dedicated attention",
-    description: "Junior KG children dive deeper into letter blends, basic numbers, and small science experiments. Working with classmates, they practice talking about their thoughts and solving simple puzzles together.",
+    description: "EuroJunior children dive deeper into letter blends, basic numbers, and small science experiments. Working with classmates, they practice talking about their thoughts and solving simple puzzles together.",
     keyOutcomes: [
       "Reading simple words and speaking confidently",
       "Comparing sizes, weights, and simple grouping",
@@ -110,12 +110,12 @@ export const PROGRAMS_DATA: ProgramItem[] = [
   },
   {
     id: "senior-kg",
-    name: "Senior KG",
+    name: "EuroSenior",
     subtitle: "Growing into confident learners.",
     ageGroup: "5 to 6 Years",
     timing: "9:00 AM to 1:00 PM",
     teacherRatio: "Small groups with dedicated attention",
-    description: "Senior KG prepares children for their next school steps. We focus on reading short stories, addition concepts, public speaking, and building social confidence in a warm, encouraging classroom.",
+    description: "EuroSenior prepares children for their next school steps. We focus on reading short stories, addition concepts, public speaking, and building social confidence in a warm, encouraging classroom.",
     keyOutcomes: [
       "Reading simple books and writing short notes",
       "Simple math addition and telling time basics",

@@ -123,8 +123,8 @@ export const AgeFinderQuiz: React.FC = () => {
             <div className="flex justify-between text-[11px] font-semibold text-slate-500 mt-2">
               <span>1.8 Yrs (Playgroup)</span>
               <span>3 Yrs (Nursery)</span>
-              <span>4 Yrs (Junior KG)</span>
-              <span>5-6 Yrs (Senior KG)</span>
+              <span>4-5 Yrs (EuroJunior)</span>
+              <span>5-6 Yrs (EuroSenior)</span>
             </div>
           </div>
         ) : (

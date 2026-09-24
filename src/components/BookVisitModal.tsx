@@ -171,8 +171,8 @@ export const BookVisitModal: React.FC = () => {
                     >
                       <option value="Playgroup">Playgroup (1.8 - 3 Yrs)</option>
                       <option value="Nursery">Nursery (3 - 4 Yrs)</option>
-                      <option value="Junior KG">Junior KG (4 - 5 Yrs)</option>
-                      <option value="Senior KG">Senior KG (5 - 6 Yrs)</option>
+                      <option value="EuroJunior">EuroJunior (4 - 5 Yrs)</option>
+                      <option value="EuroSenior">EuroSenior (5 - 6 Yrs)</option>
                     </select>
                   </div>
                 </div>

@@ -73,7 +73,7 @@ export const AdmissionsPage: React.FC = () => {
             Simple, Transparent Admission Process
           </h1>
           <p className="text-base text-slate-800 font-medium leading-relaxed">
-            We welcome parents to explore our center in Thatipur, Gwalior. Admissions are open for Playgroup, Nursery, Junior KG & Senior KG.
+            We welcome parents to explore our center in Thatipur, Gwalior. Admissions are open for Playgroup, Nursery, EuroJunior & EuroSenior.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-2">

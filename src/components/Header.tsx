@@ -70,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     },
     {
       id: 'junior-kg',
-      name: 'Junior KG',
+      name: 'EuroJunior',
       age: '4 – 5 Years',
       desc: 'Connecting ideas, early phonics & social play.',
       icon: GraduationCap,
@@ -79,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     },
     {
       id: 'senior-kg',
-      name: 'Senior KG',
+      name: 'EuroSenior',
       age: '5 – 6 Years',
       desc: 'Reading, foundational math & Grade 1 readiness.',
       icon: Award,
@@ -186,7 +186,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       </div>
 
       {/* Main Navbar */}
-      <div className="glass-panel bg-white/95 border-b border-blue-100/80 shadow-md px-4 py-3">
+      <div className="glass-panel bg-white/95 border-b border-blue-100/80 shadow-md px-4 py-2 sm:py-2.5">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Official EuroKids Balwant Nagar Logo */}
           <Link
@@ -198,7 +198,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             <img
               src="/images/eurokids-logo.jpg"
               alt="EuroKids Pre-School Balwant Nagar, Gwalior"
-              className="h-12 sm:h-14 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-16 sm:h-20 md:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xs"
             />
           </Link>
 

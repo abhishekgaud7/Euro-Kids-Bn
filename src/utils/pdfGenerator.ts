@@ -128,7 +128,7 @@ export const downloadAdmissionFormPDF = () => {
     const studentFields = [
       ['Child Full Name:', '____________________________________'],
       ['Date of Birth (DD/MM/YYYY):', '____________________', 'Gender:', 'Male / Female'],
-      ['Program Applying For:', '[ ] Playgroup  [ ] Nursery  [ ] Junior KG  [ ] Senior KG'],
+      ['Program Applying For:', '[ ] Playgroup  [ ] Nursery  [ ] EuroJunior  [ ] EuroSenior'],
       ['Blood Group:', '________', 'Aadhaar No (Optional):', '____________________']
     ];
 

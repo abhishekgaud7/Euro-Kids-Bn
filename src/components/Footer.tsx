@@ -15,11 +15,11 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Column 1: School Identity */}
           <div className="space-y-4">
-            <Link to="/" className="inline-block p-2 rounded-2xl bg-white shadow-md hover:opacity-95 transition-opacity" title="EuroKids Balwant Nagar">
+            <Link to="/" className="inline-block p-2.5 sm:p-3 rounded-2xl bg-white shadow-xl hover:opacity-95 transition-opacity" title="EuroKids Balwant Nagar">
               <img
                 src="/images/eurokids-logo.jpg"
                 alt="EuroKids Pre-School Balwant Nagar, Gwalior"
-                className="h-12 w-auto object-contain"
+                className="h-20 sm:h-24 w-auto object-contain"
               />
             </Link>
 
