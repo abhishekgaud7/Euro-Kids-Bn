@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Star, MessageSquare, Send, User, MapPin, Heart, Sparkles } from 'lucide-react';
+import { Star, MessageSquare, Send, User, MapPin, Heart, Sparkles, Eye } from 'lucide-react';
 import { useData } from '../contexts/DataContext';
 
 export const FeedbacksPage: React.FC = () => {
@@ -11,6 +11,8 @@ export const FeedbacksPage: React.FC = () => {
   const [locality, setLocality] = useState('');
   const [quote, setQuote] = useState('');
   const [rating, setRating] = useState(5);
+
+  const [selectedSlip, setSelectedSlip] = useState<{ title: string; image: string } | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +51,7 @@ export const FeedbacksPage: React.FC = () => {
       </section>
 
       {/* TESTIMONIALS WALL */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {testimonials.map((item) => (
           <motion.div
             key={item.id}
@@ -66,9 +68,21 @@ export const FeedbacksPage: React.FC = () => {
                 <span className="text-[10px] font-bold text-slate-400">{item.date}</span>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed mb-6">
+              <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed mb-4">
                 "{item.quote}"
               </p>
+
+              {item.feedbackImage && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedSlip({ title: `${item.parentName} (${item.childNameAndGrade})`, image: item.feedbackImage! })}
+                  className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold hover:bg-emerald-100 transition-colors cursor-pointer"
+                >
+                  <Sparkles className="w-3 h-3 text-emerald-500" />
+                  <span>Verified Form Slip</span>
+                  <Eye className="w-3 h-3 ml-0.5" />
+                </button>
+              )}
             </div>
 
             <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
@@ -86,6 +100,40 @@ export const FeedbacksPage: React.FC = () => {
           </motion.div>
         ))}
       </div>
+
+      {/* FEEDBACK SLIP LIGHTBOX MODAL */}
+      {selectedSlip && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setSelectedSlip(null)}
+        >
+          <div 
+            className="bg-white rounded-3xl max-w-lg w-full p-4 sm:p-6 shadow-2xl relative space-y-4 max-h-[90vh] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+              <div>
+                <h3 className="text-sm font-black text-slate-900">{selectedSlip.title}</h3>
+                <p className="text-[11px] text-emerald-600 font-semibold">Verified Parent Feedback Slip</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedSlip(null)}
+                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="overflow-auto rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-center p-2">
+              <img 
+                src={selectedSlip.image} 
+                alt={selectedSlip.title} 
+                className="max-h-[65vh] w-auto object-contain rounded-xl shadow-inner" 
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* SUBMIT FEEDBACK FORM */}
       <section className="bg-amber-50 rounded-3xl p-6 md:p-10 border border-amber-200 max-w-3xl mx-auto shadow-lg">

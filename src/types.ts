@@ -52,6 +52,7 @@ export interface Testimonial {
   rating: number;
   date: string;
   isApproved?: boolean;
+  feedbackImage?: string;
 }
 
 export interface NewsEvent {

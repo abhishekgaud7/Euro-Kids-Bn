@@ -249,36 +249,51 @@ export const FACULTY_MEMBERS: FacultyMember[] = [
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    id: "t1",
-    parentName: "Neha Sharma",
-    childNameAndGrade: "Parent of Aarav (Senior KG)",
-    locality: "Thatipur, Gwalior",
-    quote: "The school is beautifully run and feels incredibly warm and secure. The teachers are very patient, and my son Aarav is always excited to go. I highly recommend it.",
-    avatar: "/images/slider/slide2.jpg",
-    rating: 5,
-    date: "April 2026",
-    isApproved: true
-  },
-  {
-    id: "t2",
-    parentName: "Rajesh Dixit",
-    childNameAndGrade: "Parent of Pihu (Nursery)",
-    locality: "Gandhi Road, Gwalior",
-    quote: "We love the focus on simple, healthy snacks and the cozy story library. Our daughter Pihu has become much more expressive and independent.",
-    avatar: "/images/slider/slide1.jpg",
-    rating: 5,
-    date: "May 2026",
-    isApproved: true
-  },
-  {
-    id: "t3",
-    parentName: "Anjali Saxena",
-    childNameAndGrade: "Parent of Kabir (Playgroup)",
+    id: "t-vedant",
+    parentName: "Smriti",
+    childNameAndGrade: "Parent of Vedant (Nursery)",
     locality: "Balwant Nagar, Gwalior",
-    quote: "The school environment is exceptionally clean, safe, and welcoming. The teachers are incredibly patient, and they organize beautiful drawing workshops.",
-    avatar: "/images/slider/slide5.jpg",
+    quote: "Atmosphere and Teachers good communication. We feel our child is safe, happy, and learning well every single day at EuroKids Balwant Nagar.",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+    feedbackImage: "/images/feedbacks/feedback-vedant.jpeg",
     rating: 5,
-    date: "June 2026",
+    date: "July 2026",
+    isApproved: true
+  },
+  {
+    id: "t-madhav",
+    parentName: "Mayank",
+    childNameAndGrade: "Parent of Madhav (Playgroup)",
+    locality: "Balwant Nagar, Gwalior",
+    quote: "I like EuroKids Balwant Nagar for its warm, caring, child-friendly environment and dedicated teachers. Keep it up!",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+    feedbackImage: "/images/feedbacks/feedback-madhav.jpeg",
+    rating: 5,
+    date: "August 2026",
+    isApproved: true
+  },
+  {
+    id: "t-takshvi",
+    parentName: "Mangla Tiwari",
+    childNameAndGrade: "Parent of Takshvi Tiwari (Nursery)",
+    locality: "Balwant Nagar, Gwalior",
+    quote: "Teacher's communication, structured study curriculum, and safety and security features are commendable. Wonderful experience for our child.",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+    feedbackImage: "/images/feedbacks/feedback-takshvi.jpeg",
+    rating: 5,
+    date: "August 2026",
+    isApproved: true
+  },
+  {
+    id: "t-mayansh",
+    parentName: "Neetu Shrivastava",
+    childNameAndGrade: "Mother of Mayansh Shrivastava",
+    locality: "City Center, Gwalior",
+    quote: "I am so happy with the co-operation of the staff and steady improvement of my ward.",
+    avatar: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=200",
+    feedbackImage: "/images/feedbacks/feedback-mayansh.jpeg",
+    rating: 5,
+    date: "August 2026",
     isApproved: true
   }
 ];

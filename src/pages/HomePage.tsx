@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Calendar, CheckCircle2, ArrowRight, Star } from 'lucide-react';
+import { Sparkles, Calendar, CheckCircle2, ArrowRight, Star, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { HeroPhotoSlider } from '../components/HeroPhotoSlider';
@@ -15,6 +15,7 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
   const { schoolInfo, testimonials, openBookVisit, openEnquiryDrawer } = useData();
+  const [selectedSlip, setSelectedSlip] = useState<{ title: string; image: string } | null>(null);
 
   return (
     <div className="space-y-10 py-4 md:py-6">
@@ -204,18 +205,33 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
           <h2 className="text-3xl font-black text-slate-900 tracking-tight">What Gwalior Parents Say</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.slice(0, 3).map((item) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {testimonials.slice(0, 4).map((item) => (
             <div key={item.id} className="bg-white rounded-3xl p-6 border border-slate-200 shadow-md flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-1 text-amber-400 mb-3">
-                  {[...Array(item.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  ))}
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-1 text-amber-400">
+                    {[...Array(item.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-bold text-slate-400">{item.date}</span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed mb-4">
                   "{item.quote}"
                 </p>
+
+                {item.feedbackImage && (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedSlip({ title: `${item.parentName} (${item.childNameAndGrade})`, image: item.feedbackImage! })}
+                    className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold hover:bg-emerald-100 transition-colors cursor-pointer"
+                  >
+                    <Sparkles className="w-3 h-3 text-emerald-500" />
+                    <span>Verified Form Slip</span>
+                    <Eye className="w-3 h-3 ml-0.5" />
+                  </button>
+                )}
               </div>
 
               <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
@@ -236,6 +252,40 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
           ))}
         </div>
       </section>
+
+      {/* FEEDBACK SLIP LIGHTBOX MODAL */}
+      {selectedSlip && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setSelectedSlip(null)}
+        >
+          <div 
+            className="bg-white rounded-3xl max-w-lg w-full p-4 sm:p-6 shadow-2xl relative space-y-4 max-h-[90vh] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+              <div>
+                <h3 className="text-sm font-black text-slate-900">{selectedSlip.title}</h3>
+                <p className="text-[11px] text-emerald-600 font-semibold">Verified Parent Feedback Slip</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedSlip(null)}
+                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="overflow-auto rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-center p-2">
+              <img 
+                src={selectedSlip.image} 
+                alt={selectedSlip.title} 
+                className="max-h-[65vh] w-auto object-contain rounded-xl shadow-inner" 
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

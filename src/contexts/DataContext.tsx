@@ -68,7 +68,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   const [testimonials, setTestimonials] = useState<Testimonial[]>(() => {
-    const saved = localStorage.getItem('eurokids_testimonials');
+    const saved = localStorage.getItem('eurokids_testimonials_v2');
     return saved ? JSON.parse(saved) : TESTIMONIALS;
   });
 
@@ -89,7 +89,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [enquiries]);
 
   useEffect(() => {
-    localStorage.setItem('eurokids_testimonials', JSON.stringify(testimonials));
+    localStorage.setItem('eurokids_testimonials_v2', JSON.stringify(testimonials));
   }, [testimonials]);
 
   useEffect(() => {
