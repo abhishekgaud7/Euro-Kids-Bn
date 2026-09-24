@@ -52,26 +52,18 @@ export const Footer: React.FC = () => {
             <h4 className="text-sm font-extrabold uppercase tracking-wider text-white">
               Quick Links
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2.5 text-xs">
               <li>
-                <Link to="/about" className="hover:text-amber-400 transition-colors">About Us & Pedagogy</Link>
+                <Link to="/about" className="hover:text-amber-400 transition-colors">About Us</Link>
               </li>
               <li>
                 <Link to="/admissions" className="hover:text-amber-400 transition-colors">Admission Process & Fees</Link>
-              </li>
-              <li>
-                <Link to="/campus" className="hover:text-amber-400 transition-colors">Campus Safety & Bus Routes</Link>
               </li>
               <li>
                 <Link to="/gallery" className="hover:text-amber-400 transition-colors">Photo Gallery</Link>
               </li>
               <li>
                 <Link to="/feedbacks" className="hover:text-amber-400 transition-colors">Parent Testimonials</Link>
-              </li>
-              <li>
-                <button onClick={openBookVisit} className="hover:text-amber-400 transition-colors text-left cursor-pointer">
-                  Schedule Campus Walkthrough
-                </button>
               </li>
             </ul>
           </div>
