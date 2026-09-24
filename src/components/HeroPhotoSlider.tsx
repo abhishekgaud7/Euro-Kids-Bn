@@ -39,6 +39,36 @@ const PHOTO_SLIDES: PhotoSlide[] = [
     image: '/images/slider/slide5.jpg',
     caption: 'Building Block Towers & Motor Skills Play',
     tag: 'Playgroup Activity'
+  },
+  {
+    id: 'slide-6',
+    image: '/images/slider/slide6.jpg',
+    caption: 'Distinguished Guests & Dignitaries Touring EuroKids Campus',
+    tag: 'Grand Inauguration'
+  },
+  {
+    id: 'slide-7',
+    image: '/images/slider/slide7.jpg',
+    caption: 'Auspicious Saraswati Vandana & Traditional Values at EuroKids',
+    tag: 'Cultural Heritage'
+  },
+  {
+    id: 'slide-8',
+    image: '/images/slider/slide8.jpg',
+    caption: 'Fine Motor Discovery & Color Stacking Logic Activities',
+    tag: 'Montessori Play'
+  },
+  {
+    id: 'slide-9',
+    image: '/images/slider/slide9.jpg',
+    caption: 'Hands-on Geometric Shapes & Sensory Cognitive Learning',
+    tag: 'Early STEM'
+  },
+  {
+    id: 'slide-10',
+    image: '/images/slider/slide10.jpg',
+    caption: 'Grand Inauguration Ceremony & Welcome Address at Balwant Nagar',
+    tag: 'Milestone Celebration'
   }
 ];
 
