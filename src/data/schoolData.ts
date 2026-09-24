@@ -402,18 +402,39 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     caption: "Director & teachers interacting closely with toddlers in a warm, welcoming space."
   },
   {
-    id: "g4",
-    title: "Tactile Number Puzzles & Coloring",
+    id: "g-cls-1",
+    title: "Hands-on Balance & Weight Scale",
     category: "Classrooms",
-    image: "/images/slider/slide4.jpg",
-    caption: "Toddlers learning number recognition and coloring patterns."
+    image: "/images/gallery/classroom-balance-toy.jpg",
+    caption: "Early sensory discovery and weight balance concepts with colorful Montessori tools."
   },
   {
-    id: "g5",
-    title: "Constructing Towers & Spatial Play",
+    id: "g-cls-2",
+    title: "Classroom Learning Circle",
+    category: "Classrooms",
+    image: "/images/gallery/classroom-blue-day-group.jpg",
+    caption: "EuroKids toddlers engaged in playful group learning and teacher interactions."
+  },
+  {
+    id: "g-act-1",
+    title: "Montessori Wooden Blocks & Math Play",
     category: "Activities",
-    image: "/images/slider/slide5.jpg",
-    caption: "Building block towers to foster spatial thinking and fine motor skills."
+    image: "/images/gallery/activity-wooden-blocks.jpg",
+    caption: "Hands-on counting blocks, numbers, and fine motor skills on the turf play area."
+  },
+  {
+    id: "g-act-2",
+    title: "Raksha Bandhan Celebration",
+    category: "Activities",
+    image: "/images/gallery/activity-raksha-bandhan.jpg",
+    caption: "Traditional festive joy and cultural values celebration at EuroKids Balwant Nagar."
+  },
+  {
+    id: "g-act-3",
+    title: "Blue Colour Day Celebrations",
+    category: "Activities",
+    image: "/images/gallery/activity-blue-day.jpg",
+    caption: "Little ones discovering shades of blue with creative art and marine craft projects."
   }
 ];
 
