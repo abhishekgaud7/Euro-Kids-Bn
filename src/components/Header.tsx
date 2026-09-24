@@ -188,18 +188,38 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       {/* Main Navbar */}
       <div className="glass-panel bg-white/95 border-b border-blue-100/80 shadow-md px-4 py-2 sm:py-2.5">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Official EuroKids Balwant Nagar Logo */}
+          {/* Premium EuroKids Balwant Nagar Brand Badge */}
           <Link
             to="/"
             onClick={() => handleNavClick('home')}
-            className="flex items-center group py-0.5 select-none"
-            title="EuroKids Pre-School Balwant Nagar, Gwalior"
+            className="flex items-center gap-3 p-2 pr-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-md group hover:border-blue-500 transition-all duration-300 select-none"
+            title="EuroKids Balwant Nagar Home"
           >
-            <img
-              src="/images/eurokids-logo.jpg"
-              alt="EuroKids Pre-School Balwant Nagar, Gwalior"
-              className="h-16 sm:h-20 md:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xs"
-            />
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-600 via-blue-700 to-sky-500 p-0.5 shadow-md group-hover:scale-105 transition-transform duration-300 shrink-0">
+              <div className="w-full h-full bg-white rounded-[10px] p-0.5 flex items-center justify-center overflow-hidden">
+                <img
+                  src="/images/eurokids-mascot.jpg"
+                  alt="EuroKids Mascot"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center gap-2">
+                <span className="font-black text-lg sm:text-xl text-white tracking-tight leading-none group-hover:text-amber-400 transition-colors">
+                  EuroKids
+                </span>
+                <span className="bg-amber-400 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider shadow-xs">
+                  Balwant Nagar
+                </span>
+              </div>
+              <p className="text-[11px] text-sky-200 font-semibold tracking-wide mt-1 flex items-center gap-1.5">
+                <span>Preschool & Day Care</span>
+                <span className="text-amber-400 font-bold">•</span>
+                <span className="text-slate-300">Gwalior</span>
+              </p>
+            </div>
           </Link>
 
           {/* Clean Desktop Navigation Links */}
