@@ -11,7 +11,8 @@ interface DataContextType {
   updateEnquiryStatus: (id: string, status: Enquiry['status']) => void;
   deleteEnquiry: (id: string) => void;
   testimonials: Testimonial[];
-  addTestimonial: (testimonial: Omit<Testimonial, 'id' | 'date'>) => void;
+  addTestimonial: (testimonial: Omit<Testimonial, 'id' | 'date'> & { date?: string }) => void;
+  updateTestimonial: (id: string, updatedFields: Partial<Testimonial>) => void;
   deleteTestimonial: (id: string) => void;
   galleryItems: GalleryImage[];
   addGalleryImage: (item: Omit<GalleryImage, 'id'>) => void;
@@ -122,15 +123,20 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     toast.success('Enquiry deleted');
   };
 
-  const addTestimonial = (data: Omit<Testimonial, 'id' | 'date'>) => {
+  const addTestimonial = (data: Omit<Testimonial, 'id' | 'date'> & { date?: string }) => {
     const newTestimonial: Testimonial = {
       ...data,
       id: `t-${Date.now()}`,
-      date: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+      date: data.date || new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
       isApproved: true
     };
     setTestimonials(prev => [newTestimonial, ...prev]);
-    toast.success('Thank you! Your feedback has been posted.');
+    toast.success('Feedback added successfully!');
+  };
+
+  const updateTestimonial = (id: string, updatedFields: Partial<Testimonial>) => {
+    setTestimonials(prev => prev.map(t => t.id === id ? { ...t, ...updatedFields } : t));
+    toast.success('Feedback updated successfully!');
   };
 
   const deleteTestimonial = (id: string) => {
@@ -167,6 +173,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       deleteEnquiry,
       testimonials,
       addTestimonial,
+      updateTestimonial,
       deleteTestimonial,
       galleryItems,
       addGalleryImage,

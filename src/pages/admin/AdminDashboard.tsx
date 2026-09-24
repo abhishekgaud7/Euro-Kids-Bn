@@ -37,22 +37,22 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
         </button>
       </div>
 
-      {/* 3 BIG EASY STAT CARDS */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {/* 4 BIG EASY STAT CARDS */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Card 1: New Enquiries */}
         <div
           onClick={() => onNavigate('enquiries')}
           className="bg-white p-6 rounded-3xl border-2 border-amber-300 shadow-md cursor-pointer hover:shadow-xl transition-all space-y-3 group"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-black text-slate-500 uppercase tracking-wider">🟡 New Pending Forms</span>
+            <span className="text-xs font-black text-slate-500 uppercase tracking-wider">🟡 New Forms</span>
             <div className="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-black group-hover:scale-110 transition-transform">
               <Users className="w-5 h-5" />
             </div>
           </div>
           <p className="text-4xl font-black text-slate-900">{newEnquiriesCount}</p>
           <p className="text-xs text-amber-700 font-extrabold flex items-center gap-1">
-            <span>Parents waiting for response</span>
+            <span>Pending parents</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </p>
         </div>
@@ -70,7 +70,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
           </div>
           <p className="text-4xl font-black text-slate-900">{enrolledCount}</p>
           <p className="text-xs text-emerald-700 font-extrabold flex items-center gap-1">
-            <span>Confirmed student admissions</span>
+            <span>Confirmed admissions</span>
           </p>
         </div>
 
@@ -80,14 +80,32 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
           className="bg-white p-6 rounded-3xl border-2 border-blue-300 shadow-md cursor-pointer hover:shadow-xl transition-all space-y-3 group"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-black text-slate-500 uppercase tracking-wider">📸 Live Campus Photos</span>
+            <span className="text-xs font-black text-slate-500 uppercase tracking-wider">📸 Campus Photos</span>
             <div className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-black group-hover:scale-110 transition-transform">
               <ImageIcon className="w-5 h-5" />
             </div>
           </div>
           <p className="text-4xl font-black text-slate-900">{galleryItems.length}</p>
           <p className="text-xs text-blue-700 font-extrabold flex items-center gap-1">
-            <span>Click to upload new photos</span>
+            <span>Upload & replace photos</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </p>
+        </div>
+
+        {/* Card 4: Parent Reviews & Slips */}
+        <div
+          onClick={() => onNavigate('feedbacks')}
+          className="bg-white p-6 rounded-3xl border-2 border-purple-300 shadow-md cursor-pointer hover:shadow-xl transition-all space-y-3 group"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-black text-slate-500 uppercase tracking-wider">💬 Parent Reviews</span>
+            <div className="w-10 h-10 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center font-black group-hover:scale-110 transition-transform">
+              <MessageSquare className="w-5 h-5" />
+            </div>
+          </div>
+          <p className="text-4xl font-black text-slate-900">{testimonials.length}</p>
+          <p className="text-xs text-purple-700 font-extrabold flex items-center gap-1">
+            <span>Manage reviews & slips</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </p>
         </div>
