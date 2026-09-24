@@ -15,17 +15,13 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Column 1: School Identity */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-amber-400 text-slate-900 flex items-center justify-center font-black text-xl shadow-lg">
-                EK
-              </div>
-              <div>
-                <h3 className="font-extrabold text-white text-lg leading-tight">
-                  EuroKids Balwant Nagar
-                </h3>
-                <p className="text-xs text-amber-400 font-semibold">Gwalior, Madhya Pradesh</p>
-              </div>
-            </div>
+            <Link to="/" className="inline-block p-2 rounded-2xl bg-white shadow-md hover:opacity-95 transition-opacity" title="EuroKids Balwant Nagar">
+              <img
+                src="/images/eurokids-logo.jpg"
+                alt="EuroKids Pre-School Balwant Nagar, Gwalior"
+                className="h-12 w-auto object-contain"
+              />
+            </Link>
 
             <p className="text-xs text-slate-400 leading-relaxed">
               {schoolInfo.tagline} Providing a safe, nurturing environment where children discover, play, and prepare for primary school with joy.

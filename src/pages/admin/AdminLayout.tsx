@@ -40,10 +40,12 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
         <div className="space-y-6">
           {/* Executive Brand Logo Header */}
           <div className="flex items-center gap-3 pb-4 border-b border-slate-800">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-600 via-blue-700 to-sky-500 p-0.5 shadow-lg shrink-0">
-              <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center font-black text-blue-900 text-lg">
-                EK
-              </div>
+            <div className="h-11 bg-white rounded-xl p-1 shadow-md shrink-0 flex items-center justify-center">
+              <img
+                src="/images/eurokids-logo.jpg"
+                alt="EuroKids Balwant Nagar"
+                className="h-9 w-auto object-contain"
+              />
             </div>
             <div>
               <h2 className="font-extrabold text-sm text-white tracking-tight leading-none">
