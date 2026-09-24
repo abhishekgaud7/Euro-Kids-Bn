@@ -112,45 +112,21 @@ export const HeroPhotoSlider: React.FC = () => {
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* High-Resolution Side-by-Side Fixed Proportional Slider */}
-      <div className="relative h-[330px] sm:h-[390px] lg:h-[430px] w-full overflow-hidden bg-slate-950 flex items-center justify-center">
-        {/* Ambient Blurred Backdrop for seamless color harmony */}
+      <div className="relative h-[300px] sm:h-[360px] lg:h-[400px] w-full overflow-hidden bg-slate-950">
+        {/* High Quality Crisp Image Slide */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={`bg-${currentSlide.id}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0 overflow-hidden pointer-events-none"
-          >
-            <img
-              src={currentSlide.image}
-              alt=""
-              aria-hidden="true"
-              className="w-full h-full object-cover blur-2xl opacity-40 scale-110"
-            />
-            <div className="absolute inset-0 bg-slate-950/40" />
-          </motion.div>
-        </AnimatePresence>
-
-        {/* 100% Full Uncropped Image: Every face, person, and detail fully visible */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`img-wrap-${currentSlide.id}`}
-            initial={{ opacity: 0, scale: 0.98 }}
+          <motion.img
+            key={`img-${currentSlide.id}`}
+            src={currentSlide.image}
+            alt={currentSlide.caption}
+            loading="eager"
+            decoding="async"
+            initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.01 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="relative z-10 w-full h-full flex items-center justify-center p-2 sm:p-3"
-          >
-            <img
-              src={currentSlide.image}
-              alt={currentSlide.caption}
-              loading="eager"
-              decoding="async"
-              className="max-h-full max-w-full w-auto h-auto object-contain rounded-2xl drop-shadow-2xl"
-            />
-          </motion.div>
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="w-full h-full object-cover object-center"
+          />
         </AnimatePresence>
 
         {/* Top Badges Overlay */}
@@ -187,12 +163,12 @@ export const HeroPhotoSlider: React.FC = () => {
         </button>
 
         {/* Caption & Dot Indicators */}
-        <div className="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-8 pb-3 px-4 flex flex-col items-center text-center">
+        <div className="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-10 pb-3.5 px-5 flex flex-col items-center text-center">
           <p className="text-xs sm:text-sm font-black text-white tracking-wide max-w-xl mb-2 drop-shadow-md">
             {currentSlide.caption}
           </p>
 
-          <div className="flex items-center gap-1.5 flex-wrap justify-center max-w-xs">
+          <div className="flex items-center gap-1.5">
             {PHOTO_SLIDES.map((_, idx) => (
               <button
                 key={idx}
