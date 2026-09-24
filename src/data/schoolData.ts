@@ -470,6 +470,41 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     category: "Activities",
     image: "/images/gallery/activity-blue-day.jpg",
     caption: "Little ones discovering shades of blue with creative art and marine craft projects."
+  },
+  {
+    id: "g-cmp-1",
+    title: "Indoor Fun Slide & Play Zone",
+    category: "Campus",
+    image: "/images/gallery/campus-indoor-play-slide.jpg",
+    caption: "Child-safe indoor slide and basketball mini-court on green turf for gross motor play."
+  },
+  {
+    id: "g-cmp-2",
+    title: "Soft Gym & Sensory Play Corner",
+    category: "Campus",
+    image: "/images/gallery/campus-soft-play-gym.jpg",
+    caption: "Cushioned safety mats and physical equipment for gymnastics, balance, and motor agility."
+  },
+  {
+    id: "g-cls-8",
+    title: "Interactive Group Learning Session",
+    category: "Classrooms",
+    image: "/images/gallery/classroom-rainbow-learning-group.jpg",
+    caption: "EuroKids students exploring alphabet and number puzzles together under teacher encouragement."
+  },
+  {
+    id: "g-cur-1",
+    title: "Hands-on Phonics & Number Curriculum",
+    category: "Curriculum",
+    image: "/images/gallery/curriculum-montessori-kits.jpg",
+    caption: "Sensory wooden clock, alphabet discs, and number blocks enabling intuitive learning."
+  },
+  {
+    id: "g-act-4",
+    title: "Block Stacking & Abacus Logic",
+    category: "Activities",
+    image: "/images/gallery/activity-pyramid-abacus-play.jpg",
+    caption: "EuroKids toddlers building problem-solving skills with colorful pyramid blocks and bead maze."
   }
 ];
 

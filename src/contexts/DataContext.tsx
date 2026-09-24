@@ -74,7 +74,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   const [galleryItems, setGalleryItems] = useState<GalleryImage[]>(() => {
-    const saved = localStorage.getItem('eurokids_gallery_v3');
+    const saved = localStorage.getItem('eurokids_gallery_v4');
     return saved ? JSON.parse(saved) : GALLERY_ITEMS;
   });
 
@@ -94,7 +94,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [testimonials]);
 
   useEffect(() => {
-    localStorage.setItem('eurokids_gallery_v3', JSON.stringify(galleryItems));
+    localStorage.setItem('eurokids_gallery_v4', JSON.stringify(galleryItems));
   }, [galleryItems]);
 
   const updateSchoolInfo = (newInfo: Partial<SchoolInfo>) => {
