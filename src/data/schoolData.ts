@@ -14,7 +14,7 @@ import {
 export const SCHOOL_INFO: SchoolInfo = {
   name: "EuroKids Balwant Nagar",
   tagline: "A happy place where young children feel at home while they learn.",
-  address: "E-46-A, Balwant Nagar, Gandhi Road, Thatipur, Gwalior, Madhya Pradesh - 474011",
+  address: "E46-A, Balwant Nagar, Gandhi Rd, Thatipur, Gwalior, Madhya Pradesh - 474011",
   phone: "+91-9183686765",
   altPhone: "+91-9183686765",
   email: "Eurokidsccgwl@gmail.com",
@@ -22,7 +22,7 @@ export const SCHOOL_INFO: SchoolInfo = {
   officeHours: "9:00 AM – 5:00 PM (Monday to Saturday)",
   established: 2018,
   city: "Gwalior, Madhya Pradesh",
-  mapsUrl: "https://maps.google.com/?q=26.21089,78.193871",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=EuroKids+Preschool+in+Balwant+Nagar%2C+Gandhi+Rd%2C+Thatipur%2C+Gwalior%2C+Madhya+Pradesh+474011",
   mapCoordinates: { lat: 26.21089, lng: 78.193871 },
   stats: [
     { label: "Hands-on Learning", value: "Curriculum" },

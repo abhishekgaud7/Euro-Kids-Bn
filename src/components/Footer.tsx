@@ -125,8 +125,8 @@ export const Footer: React.FC = () => {
 
             <div className="rounded-2xl overflow-hidden border-2 border-slate-700 shadow-md bg-slate-800 h-44 w-full relative">
               <iframe
-                title="EuroKids Balwant Nagar Location Map"
-                src="https://maps.google.com/maps?q=26.21089,78.193871&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                title="EuroKids Preschool in Balwant Nagar, Gwalior"
+                src="https://maps.google.com/maps?q=EuroKids+Preschool+in+Balwant+Nagar%2C+Gandhi+Rd%2C+Thatipur%2C+Gwalior%2C+Madhya+Pradesh+474011&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 className="w-full h-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

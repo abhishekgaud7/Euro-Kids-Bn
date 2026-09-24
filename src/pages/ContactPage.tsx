@@ -141,8 +141,8 @@ export const ContactPage: React.FC = () => {
           {/* EMBEDDED MAP PREVIEW */}
           <div className="bg-white rounded-3xl p-3 border border-slate-200 shadow-xl overflow-hidden">
             <iframe
-              title="EuroKids Balwant Nagar Location"
-              src="https://maps.google.com/maps?q=26.21089,78.193871&z=16&output=embed"
+              title="EuroKids Preschool in Balwant Nagar, Gwalior"
+              src="https://maps.google.com/maps?q=EuroKids+Preschool+in+Balwant+Nagar%2C+Gandhi+Rd%2C+Thatipur%2C+Gwalior%2C+Madhya+Pradesh+474011&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="240"
               style={{ border: 0, borderRadius: '1.25rem' }}

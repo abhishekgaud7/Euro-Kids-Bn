@@ -71,15 +71,31 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateTab }) => {
               ))}
             </div>
 
-            {/* Safety & Quality Bulletins */}
-            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-bold text-slate-100">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            {/* Safety & Quality Bulletins from Official Flyer */}
+            <div className="pt-2 flex flex-wrap items-center gap-2 text-xs font-bold text-slate-100">
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                 <span>100% CCTV & Police Verified Staff</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Heureka Visible Thinking Pedagogy</span>
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+                <CheckCircle2 className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+                <span>TUV Certified Centre (Fire Safety)</span>
+              </div>
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+                <CheckCircle2 className="w-3.5 h-3.5 text-sky-300 shrink-0" />
+                <span>All AC Classes & 24x7 DG Power Backup</span>
+              </div>
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
+                <span>Open Green Play Garden</span>
+              </div>
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+                <CheckCircle2 className="w-3.5 h-3.5 text-pink-300 shrink-0" />
+                <span>Experienced Teachers (10+ Yrs)</span>
+              </div>
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+                <CheckCircle2 className="w-3.5 h-3.5 text-purple-300 shrink-0" />
+                <span>Heureka Pedagogy (Harvard Zero Project)</span>
               </div>
             </div>
           </div>
