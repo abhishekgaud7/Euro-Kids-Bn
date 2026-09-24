@@ -186,19 +186,19 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       </div>
 
       {/* Main Navbar */}
-      <div className="glass-panel bg-white/95 border-b border-blue-100/80 shadow-md px-4 py-2 sm:py-2.5">
+      <div className="glass-panel bg-white/95 border-b border-blue-100/80 shadow-sm px-4 py-1.5 sm:py-2">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Official EuroKids Balwant Nagar Mascot Logo */}
           <Link
             to="/"
             onClick={() => handleNavClick('home')}
-            className="flex items-center py-1 select-none group"
+            className="flex items-center select-none group"
             title="EuroKids Pre-School Balwant Nagar, Gwalior"
           >
             <img
               src="/images/eurokids-logo.png"
               alt="EuroKids Pre-School Balwant Nagar, Gwalior"
-              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-11 sm:h-13 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
